@@ -1,0 +1,52 @@
+\section{Related Work}
+
+1. 触屏上的防误触算法
+
+防误触的算法可以按两种方法分类，一是按正例的类型分类，二是按输入模态分类。
+
+正例可以是广义的触摸输入，也可以是特定的任务，如打字、触屏笔写字等等；输入的模态可以是传统的触摸屏，也可以在触碰上加装压力、xx等信息。甚至是结合了肢体语言、眼动、头动等触屏之外的信息。
+
+在这份工作中，我们考虑用带有压力的触摸屏，来实现打字任务下的防误触问题。一方面，这一问题是重要的，因为大多数触屏输入法还没有防误触算法，使得用户输入的效率和自然性受到影响；另一方面，这一收窄过的问题是理论上可解的，在我们的试验中，有xx.x\%的数据是可以人工标注的，只要我们使用机器学习去接近这一准确率，该技术就能实现。
+
+与先前工作不同的是，我们这份工作首次考虑到了技术和用户行为之间的影响，有的工作在采集数据时不给出反馈，或者是给出了未经防误触算法过滤的反馈，这都不能正确反映用户在最终技术上的心理模型。在这份工作中，我们采用迭代式的方法，重复地采集用户数据和优化机器学习算法，最终总结出用户在一个“近乎完美防误触键盘”上打字的行为，并根据此用户行为，设计了一款“近乎完美防误触的键盘”。
+
+2. 触屏键盘上支持防误触的好处
+
+(1) 有机会弥补触屏键盘上没有触摸状态的问题
+
+物理键盘上有release/touch/press三态，而触屏键盘上只有release/press两态。touch状态在物理键盘上承担着重要的作用，具体有三点：1、物理键盘上的触觉纹理可以让用户不看键盘的情况下对齐手指，从而支持盲打；2、键帽能够给用户提供触觉反馈，确认一次点击操作，这不仅增强了用户体验，也显著地提升了打字速度；3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度。触屏键盘上touch状态的缺少，使得触屏上的打字效率显著低于物理键盘打字的效率。
+
+有不少工作尝试弥补物理键盘和触屏键盘之间的gap。xx通过加装xx硬件，提供了纹理信息，达到了xx效果。xx通过加装xx硬件，提供了用户在打字时的触觉反馈，达到了xx的效果。xx采用简单的时间和距离阈值方法来区分打字和误触，从而允许用户将手指休息在触屏键盘上。然而，以上对触屏键盘的体验提升，都是以能够正确区分打字和误触为前提的。而还没有哪份工作做到了很高的识别准确率，这也是我们这份工作的重要动机。
+
+(2) 在touchscreen上无缝区分keyboard和其它有意输入
+
+如果能够在touchsreen上identify-typing-action，就可以仅使用触摸屏的同一块区域，同时支持文本输入和其它交互，如触摸屏控制鼠标pointing，又如其它的一些手势命令等等。TapBoard2能够有效地将打字的触摸事件和pointing的触摸事件正确区分，使得同一块触摸屏及支持了文本输入，又支持了触摸板控制鼠标。xx将手掌的误触作为输入通道。
+
+还可以区分typing和stylus输入
+
+[2014-PenUnint]
+
+[2014-PenMightier]
+
+[2014-PalmRejection]
+
+[Exploring and Understanding Unintended Touch during Direct Pen Interaction]
+
+(3) 将原本应该是误触的触碰利用为输入信息
+
+Matulic et al. [2017-HandContact] extended hand interactions from fingertips to the whole hand in hand-shape based interaction. Tabletop interaction can be enriched by considering whole hands as input instead of only fingertips. We describe a
+generalised, reproducible computer vision algorithm to recognise hand contact shapes, with support for arm rejection, as well as dynamic properties like finger movement
+and hover. A controlled experiment shows the algorithm can detect seven different contact shapes (such as fist, flat palm and spread hand) with roughly 91\% average accuracy如果能将type点击事件和手掌的触摸事件区分开来，就可以支持hand contact shape所支持的交互方式。
+
+Zhang et al. [77] proposed to leverage various hand postures such as using the palm to augment pen and touch interactions.
+
+[2018-PalmTouch]
+
+将大鱼际的误触作为模式切换。
+
+We present PalmTouch, an additional input modality that differentiates between touches of fingers and the palm. We present different use cases for PalmTouch, including the
+use as a shortcut and for improving reachability.  We have developed a model that differentiates between finger and palm touch with an accuracy of 99.53\% in realistic scenarios.
+
+[??] 比如处理漂移问题。
+
+
