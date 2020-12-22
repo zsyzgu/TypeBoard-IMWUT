@@ -2,27 +2,44 @@
 
 1. 触屏上的防误触算法
 
-防误触的算法可以按两种方法分类，一是按正例的类型分类，二是按输入模态分类。
+（1）按误触的定义分类
 
-正例可以是广义的触摸输入，也可以是特定的任务，如打字、触屏笔写字等等；输入的模态可以是传统的触摸屏，也可以在触碰上加装压力、xx等信息。甚至是结合了肢体语言、眼动、头动等触屏之外的信息。
+我们可以通过对误触的定义来分类相关工作种触屏上的防误触算法。有相当一部分工作将误触笼统地定义为“无意的点击”[xx,xx,xx]，有的工作则将误触一词描述为xx[xx]和xx[xx]。这一类的工作选择有代表性的具体描述一下。这一类工作的优点在于泛化能力强，（声称）能适用于各种各样的场景和任务。其缺点是准确率普遍较低，几乎所有工作的预测准确率都低于95\%[xx]，这一低准确率可能暗示“有意的点击”和“无意的点击”这一笼统的分类方法有时候是不可区分的，而不会像future-work所说的一样随着机器学习的进步而解决。另外，许多工作并没有在多个应用场景下测试该防误触算法[xx]，这使得泛化能力面临质疑。
 
-在这份工作中，我们考虑用带有压力的触摸屏，来实现打字任务下的防误触问题。一方面，这一问题是重要的，因为大多数触屏输入法还没有防误触算法，使得用户输入的效率和自然性受到影响；另一方面，这一收窄过的问题是理论上可解的，在我们的试验中，有xx.x\%的数据是可以人工标注的，只要我们使用机器学习去接近这一准确率，该技术就能实现。
+[2020-TabletopTouch]
+In our research, we leverage gaze direction, head orientation and screen contact data to identify and filter out unintentional touches. 强调是大桌面. They defined unintentional touches as those touches that do not contribute to any interaction goal. They compiled our findings into five types of spatiotemporal features, and train a machine learning model to recognize unintentional touches with an F1 score of 91.3\%.
 
-与先前工作不同的是，我们这份工作首次考虑到了技术和用户行为之间的影响，有的工作在采集数据时不给出反馈，或者是给出了未经防误触算法过滤的反馈，这都不能正确反映用户在最终技术上的心理模型。在这份工作中，我们采用迭代式的方法，重复地采集用户数据和优化机器学习算法，最终总结出用户在一个“近乎完美防误触键盘”上打字的行为，并根据此用户行为，设计了一款“近乎完美防误触的键盘”。
+[2012-IdentifyUnint]
+手持触屏设备上（电容屏）的防误触算法，对有意点击的recall-rate是99.2\%，但precision只有79.6\%。能用的信息只有报点（并没有电容图），仅用到了简单的时空特征，包括触摸时间，触摸移动距离，与边缘的距离，轨迹距离与直线距离的比例。Matero and Colley [36] tried to classify accidental touch events on mobile phones in daily usage. They investigated numerous typical operations on mobile devices (e.g., sweeping on the screen, device handling and phone calls) and proposed a rule-based classification algorithm according to the contact area and touch duration. Their best algorithm can eliminate 79.6\% of unintentional touches with a 0.8\% false-positive rate.
 
-TapBoard和我们的最像。但它有不少缺陷。另外，TapBoard在实验设计上有一个错误，他们通过一个基于誊写任务的对比实验，证明了TapBoard的输入效率和传统触屏键盘无异，这是以偏概全的。我们通过Pilot-study发现，在誊写等快速打字的任务中，用户很少将手指休息在触屏上，因此TapBoard无法证明用户在写日记等任务中不会因为手指的休息造成误触问题。
+另一部分工作限定了场景和任务，因此对误触的定义也更加具体一些。例如，有的工作专门处理文本输入法中的误触问题[xx]，这一类工作中的误触就是非有意的打字点击；又例如，有的工作专门处理触屏笔使用过程中的误触问题[xx]\cite{2014-PalmRejection}，这一类工作的误触就是非触摸笔输入。这一类工作选择有代表性的具体描述以下。这一类工作的缺点是泛化能力弱，仅限于一类应用场景和任务。其优点是准确率能够达到很高。由于场景单一、简单，这一类工作得以分析fail-cases的原因，从而探索用户的行为模式，我们认为这一点在人机交互和机器学习融合的领域里是十分重要的。
+
+[2014-PalmRejection]
+Schwarz et al. present a probabilistic touch filtering approach that distinguish between legitimate stylus and palm touches. They used spatiotemporal features and decision forest model to distinguish palm touches from stylus input. Their system improves upon previous approaches, reducing accidental palm inputs to 0.016 per pen
+stroke, while correctly passing 97.9\% of stylus inputs.
+
+
+（2）按输入信号分类
+
+我们还可以根据输入的信号来分类触屏上的防误触算法。大部分工作使用传统的触屏设备中的报点数据[xx]或者电容屏图像[xx]来判断误触。这一类的工作选择有代表性的具体描述一下。这一类工作的优点在于仅利用了电容屏数据，可以应用在目前大部分手机和平板电脑上；缺点在于其准确率不够高，如果能结合其它传感器数据，可能可以提高识别精度。
+
+另一部分工作在正规的电容屏之上加上了其它的输入信道，比如压力[xx]、声音[xx]等信息，甚至是结合了四肢[xx]、肢体语言、头动眼动[xx]等触屏之外的信息。这一类工作选择有代表性的具体描述一下。这一类工作的优点是识别准确率更高，缺点是不能马上应用在现有的已经普及的设备上。
+
+在我们的这份工作中，我们将任务focus在文本输入任务上，在输入信道上，我们也引入了压力屏的压力数据，以增强识别的准确率，希望把这个防误触的问题研究透彻，也把防误触的算法做到完美。有一份叫TapBoard的工作和这篇论文很像[xx]，但它有不少缺陷。例如xx，xx，xx。另外，TapBoard在实验设计上有一个错误，他们通过一个基于誊写任务的对比实验，证明了TapBoard的输入效率和传统触屏键盘无异，这是以偏概全的。我们通过Pilot-study发现，在誊写等快速打字的任务中，用户很少将手指休息在触屏上，因此TapBoard无法证明用户在写日记等任务中不会因为手指的休息造成误触问题。
+
+我们这份工作和先前工作相比的一个特点是，我们首次考虑到了防误触能力和用户行为之间互相影响的效应。有的实验设置在采集数据时不给出反馈[xx]，有的实验是给出了未经防误触算法过滤的反馈[xx]，这都不能正确反映用户在最终技术上的心理模型。在这份工作中，我们采用迭代式的方法，重复地采集用户数据和优化机器学习算法，最终总结出用户在一个防误触触屏键盘上打字的行为，并根据此用户行为，设计了一款鲁棒的防误触触屏键盘。
 
 2. 触屏键盘上支持防误触的好处
 
 (1) 有机会弥补触屏键盘上没有触摸状态的问题
 
-物理键盘上有release/touch/press三态，而触屏键盘上只有release/press两态。touch状态在物理键盘上承担着重要的作用，具体有三点：1、物理键盘上的触觉纹理可以让用户不看键盘的情况下对齐手指，从而支持盲打；2、键帽能够给用户提供触觉反馈，确认一次点击操作，这不仅增强了用户体验，也显著地提升了打字速度；3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度。触屏键盘上touch状态的缺少，使得触屏上的打字效率显著低于物理键盘打字的效率。
+物理键盘上有release/touch/press三态，而触屏键盘上只有release/press两态[xx]。touch状态在物理键盘上承担着重要的作用，具体有三点：1、物理键盘上的触觉纹理可以让用户不看键盘的情况下对齐手指，从而支持盲打[xx]；2、键帽能够给用户提供触觉反馈，确认一次点击操作，这不仅增强了用户体验[xx]，也显著地提升了打字速度[xx]；3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度[xx]。触屏键盘上touch状态的缺少，使得触屏上的打字效率显著低于物理键盘打字的效率。
 
-有不少工作尝试弥补物理键盘和触屏键盘之间的gap。xx通过加装xx硬件，提供了纹理信息，达到了xx效果。xx通过加装xx硬件，提供了用户在打字时的触觉反馈，达到了xx的效果。xx采用简单的时间和距离阈值方法来区分打字和误触，从而允许用户将手指休息在触屏键盘上。然而，以上对触屏键盘的体验提升，都是以能够正确区分打字和误触为前提的。而还没有哪份工作做到了很高的识别准确率，这也是我们这份工作的重要动机。
+有不少工作尝试弥补物理键盘和触屏键盘之间的gap。xx通过加装xx硬件，提供了纹理信息，达到了xx效果。xx通过加装xx硬件，提供了用户在打字时的触觉反馈，达到了xx的效果。xx采用简单的时间和距离阈值方法来区分打字和误触，从而允许用户将手指休息在触屏键盘上。然而，以上对触屏键盘的体验提升，都是以能够正确区分打字和误触为前提的。例如，对于屏幕上有tactile反馈的工作中[xx]，只有在触屏键盘能够很好地防误触地情况下，用户才会去摸键盘上的纹理，从而使能触屏上的盲打。
 
 (2) 在touchscreen上无缝区分keyboard和其它有意输入
 
-如果能够在touchsreen上identify-typing-action，就可以仅使用触摸屏的同一块区域，同时支持文本输入和其它交互，如触摸屏控制鼠标pointing，又如其它的一些手势命令等等。TapBoard2能够有效地将打字的触摸事件和pointing的触摸事件正确区分，使得同一块触摸屏及支持了文本输入，又支持了触摸板控制鼠标。xx将手掌的误触作为输入通道。
+如果能够在touchsreen上identify-typing-action，就可以仅使用触摸屏的同一块区域，同时支持文本输入和其它交互，如触摸屏控制鼠标pointing[xx]，又如其它的一些手势命令[xx]等等。TapBoard2能够有效地将打字的触摸事件和pointing的触摸事件正确区分，使得同一块触摸屏及支持了文本输入，又支持了触摸板控制鼠标。xx将手掌的误触作为输入通道。
 
 还可以区分typing和stylus输入
 
@@ -35,6 +52,8 @@ TapBoard和我们的最像。但它有不少缺陷。另外，TapBoard在实验�
 [Exploring and Understanding Unintended Touch during Direct Pen Interaction]
 
 (3) 将原本应该是误触的触碰利用为输入信息
+
+有的相关工作将误触作为有用的输入信息，从而提供额外的输入通道。
 
 Matulic et al. [2017-HandContact] extended hand interactions from fingertips to the whole hand in hand-shape based interaction. Tabletop interaction can be enriched by considering whole hands as input instead of only fingertips. We describe a
 generalised, reproducible computer vision algorithm to recognise hand contact shapes, with support for arm rejection, as well as dynamic properties like finger movement
