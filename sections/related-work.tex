@@ -1,41 +1,64 @@
 \section{Related Work}
 
-1. 触屏上的防误触算法
+\subsection{Unintentional Touch Rejection on Touch Screen}
 
-（1）按误触的定义分类
+在没有防误触的屏幕上操作时，用户需要小心谨慎地进行输入，这使得用户难以进行自然和放松的触摸输入\cite{2014-PenMightier, 2020-TabletopTouch}。为了提高用户触摸输入的体验，有大量的工作研究了防误触问题。在本子章节中，我们按照两种分类方式来列举和比较现有的工作，分别是按设备和传感器能力分类，和按“误触”的定义分类。
 
-我们可以通过对误触的定义来分类相关工作种触屏上的防误触算法。有相当一部分工作将误触笼统地定义为“无意的点击”[xx,xx,xx]，有的工作则将误触一词描述为xx[xx]和xx[xx]。这一类的工作选择有代表性的具体描述一下。这一类工作的优点在于泛化能力强，（声称）能适用于各种各样的场景和任务。其缺点是准确率普遍较低，几乎所有工作的预测准确率都低于95\%[xx]，这一低准确率可能暗示“有意的点击”和“无意的点击”这一笼统的分类方法有时候是不可区分的，而不会像future-work所说的一样随着机器学习的进步而解决。另外，许多工作并没有在多个应用场景下测试该防误触算法[xx]，这使得泛化能力面临质疑。
+（1）按设备和传感器能力分类
 
-[2020-TabletopTouch]
-In our research, we leverage gaze direction, head orientation and screen contact data to identify and filter out unintentional touches. 强调是大桌面. They defined unintentional touches as those touches that do not contribute to any interaction goal. They compiled our findings into five types of spatiotemporal features, and train a machine learning model to recognize unintentional touches with an F1 score of 91.3\%.
+我们可以根据设备和传感器能力来分类相关工作。由于防误触问题的重要性，在智能手机\cite{2012-IdentifyUnint,2015-GestureOn,2018-PalmTouch,2019-BeyondUnint}、平板电脑\cite{2006-PadUnint,2014-PenUnint,2014-PalmRejection,2013-TapBoard,2016-TapBoard2}和大桌面\cite{2020-TabletopTouch}等等触摸设备上，都有大量防误触的相关工作，其中大多数工作都是仅利用传统触摸设备中自带的报点数据\cite{2012-IdentifyUnint,2006-PadUnint,2014-PalmRejection,2013-TapBoard,2016-TapBoard2}、电容屏图像\cite{2018-PalmTouch,2014-PenUnint}来判断误触的。Matero等人研究了利用智能手机触屏报点信息来识别误触的可行性\cite{2012-IdentifyUnint}。他们在智能手机上采集了17名用户在swipe interactions in the home view, traditional phone call interaction, and general device handling这三种典型的应用场景下的触屏报点数据，并提出了六个与点击时长、落点位置和轨迹规律相关的数值作为filtering criteria，最终能rejected 76.6\%的误触点，同时只rejected了0.8\%的有意点击。Schwarz等人xx\cite{2014-PalmRejection}，提出了一个概率性的触摸过滤器用于区分legitimate stylus and palm touches。They used spatiotemporal features and decision forest model to distinguish palm touches from stylus input。他们的系统可以将accidental palm inputs降低至0.016每次pen stroke，同时正确地识别了97.9\%的笔迹输入。PalmTouch\cite{2018-PalmTouch}是一种附加的输入模态，which可以区分手指输入和手掌输入，并利用手掌输入作为快捷键来提高手机系统的可达性。PalmTouch将整个电容屏的图像信息作为输入，并用卷积神经网络训练二分类模型，最终达到了99.5\%的准确率。这类工作的优势在于仅利用了现呈的设备和传感器，其算法能够马上应用在目前大部分手机和平板电脑上；其缺点是低准确率或是受限的应用场景。
 
-[2012-IdentifyUnint]
-手持触屏设备上（电容屏）的防误触算法，对有意点击的recall-rate是99.2\%，但precision只有79.6\%。能用的信息只有报点（并没有电容图），仅用到了简单的时空特征，包括触摸时间，触摸移动距离，与边缘的距离，轨迹距离与直线距离的比例。Matero and Colley [36] tried to classify accidental touch events on mobile phones in daily usage. They investigated numerous typical operations on mobile devices (e.g., sweeping on the screen, device handling and phone calls) and proposed a rule-based classification algorithm according to the contact area and touch duration. Their best algorithm can eliminate 79.6\% of unintentional touches with a 0.8\% false-positive rate.
+另一部分工作在现有设备之上加入了其它的输入信道\cite{2015-GestureOn,2020-TabletopTouch,2001-PalmPressure,2019-BeyondUnint}。GestureOn\cite{2015-GestureOn}试图将黑屏时的手势输入和日常生活中的误触区分处理，这份工作广泛地利用了手机上所有能获取到的传感器数据，比如光敏传感器、接近光传感器、惯性传感器和带有压力的触屏报点信息。其中触屏上压力信息是技术上成熟，但还未完全普及的技术。融合了这些信息以后，GestureOn acquired 98.2\% precision and 97.6\% recall on detecting gestures from accidental touches。徐等人尝试解决大桌面上误触问题\cite{2020-TabletopTouch}，它们将误触定义为一切不表达输入意图的触屏报点，在这份工作中，他们的防误触算法利用到了头动和眼动的信息，which在目前来说只能在实验室环境下获取，最后，这份工作达到了an F1 score of 91.3\%。以上的工作都在最常用的触屏设备上加上额外的传感器，能够不出意外地提升误触的识别准确率，tradeoff是不能马上应用在未经改装的手机上。
 
-另一部分工作限定了场景和任务，因此对误触的定义也更加具体一些。例如，有的工作专门处理文本输入法中的误触问题[xx]，这一类工作中的误触就是非有意的打字点击；又例如，有的工作专门处理触屏笔使用过程中的误触问题[xx]\cite{2014-PalmRejection}，这一类工作的误触就是非触摸笔输入。这一类工作选择有代表性的具体描述以下。这一类工作的缺点是泛化能力弱，仅限于一类应用场景和任务。其优点是准确率能够达到很高。由于场景单一、简单，这一类工作得以分析fail-cases的原因，从而探索用户的行为模式，我们认为这一点在人机交互和机器学习融合的领域里是十分重要的。
+% Smartphone:`
+% [2012-IdentifyUnint] 报点
+% [2015-GestureOn] 报点+光传感器+接近光+九轴惯性传感器+报点包含压力信息
+% [2018-PalmTouch] 电容屏数据
+% [2019-BeyondUnint] 背面输入的轨迹
+% tablet:
+% [2006-PadUnint] 报点（当时不是电容屏）
+% [2014-PenUnint] 电容屏，研究行为的时候用了许多的传感器，但是技术只依赖电容屏
+% [2014-PalmRejection] 报点（利用到时序上的统计数据作为feature)
+% [2013-TapBoard] 报点
+% [2016-TapBoard2] 报点
+% Tabletop:
+% [2020-TabletopTouch] 报点+头动眼动信号
 
-[2014-PalmRejection]
-Schwarz et al. present a probabilistic touch filtering approach that distinguish between legitimate stylus and palm touches. They used spatiotemporal features and decision forest model to distinguish palm touches from stylus input. Their system improves upon previous approaches, reducing accidental palm inputs to 0.016 per pen
-stroke, while correctly passing 97.9\% of stylus inputs.
+（2）按误触的定义分类
 
+我们可以通过对误触的定义来分类相关工作种触屏上的防误触算法。有少量的文献\cite{2012-IdentifyUnint,2020-TabletopTouch}和大量的专利\cite{2016-Classification,2006-PadUnint,2013-System,2013-Precluding,2015-TouchScreen}将unintentional touch定义为不代表任何输入意图的触摸点\cite{2020-TabletopTouch}，这一类工作研究的是设备上通用的防误触问题，不区分具体的任务。也有工作将误触称为unwanted touch或accidental touch\cite{2015-GestureOn,2012-IdentifyUnint}。这一类工作的优点在于适用于广泛的应用场景和任务，其tradeoff是相对降低的识别准确率，例如手机上利用触屏报点识别误触的recall只有76.6\%\cite{2012-IdentifyUnint}，又如在大桌面上结合了触屏报点、头动、眼动等信息判断误触，其准去率(F1 score)也只有91.3\%。这一类工作有两大致命的缺点，一是准确率很低，这一低准确率可能暗示着正常点击和“不代表任何输入意图的点击”在现有的传感器数据下有时候是不可区分的，而不会future-work中所说的随着机器学习的进步而得到一个可用的水平；二是他们无法通过简短的几个lab-study证明算法的普适性，而只能在作为limitation进行讨论。
 
-（2）按输入信号分类
+在学术界，更多的工作研究了限定的场景和任务下的防误触问题。有的工作专门讨论了触屏键盘的防误触问题\cite{2013-TapBoard,2016-TapBoard2}，在这一类工作中，误触的定义是除了“有意的打字点击”以外的触摸点。TapBoard\cite{2013-TapBoard}将短暂的tap动作视为有意的打字点击，而将其它触摸事件视为误触点，并通过阈值的方法区分它们，结果是用户可以适应这种技术，在TapBoard上打字的效率与在普通触屏上打字无异，而用户平时可以将手指轻轻放在屏幕上休息。TapBoard2\cite{2016-TapBoard2}我还没有看明白呢！有的工作着力于区分触屏上的电容笔点击和手掌的误触，基于报点和电容屏的数据，这些工作采用时空特征和简单的机器学习，达到了xx.x\%以上的准确率，具体也是还没看呢！\cite{2013-PalmInput,2014-PenUnint,2014-PalmRejection}。还有的工作在防误触的情况下识别了特定的触摸手势。例如PalmTouch\cite{2018-PalmTouch}以99.5\%的准确率区分了手指输入和手掌输入，从而将手掌输入作为特定功能的快捷方式。GestureOn\cite{2015-GestureOn}以97.9的准确率(F1 score)区分了黑屏时的手势输入和日常生活中的误触，也是为了表达快捷方式。以上这一类特定场景下的误触识别问题，其准确率往往比较高，更接近实用的水平，作为tradeoff是仅限于特定的应用场景和任务。
 
-我们还可以根据输入的信号来分类触屏上的防误触算法。大部分工作使用传统的触屏设备中的报点数据[xx]或者电容屏图像[xx]来判断误触。这一类的工作选择有代表性的具体描述一下。这一类工作的优点在于仅利用了电容屏数据，可以应用在目前大部分手机和平板电脑上；缺点在于其准确率不够高，如果能结合其它传感器数据，可能可以提高识别精度。
+(3)我们这份工作在相关工作中的位置
 
-另一部分工作在正规的电容屏之上加上了其它的输入信道，比如压力[xx]、声音[xx]等信息，甚至是结合了四肢[xx]、肢体语言、头动眼动[xx]等触屏之外的信息。这一类工作选择有代表性的具体描述一下。这一类工作的优点是识别准确率更高，缺点是不能马上应用在现有的已经普及的设备上。
+如表格xx所示，我们用一个2*2的空间分类了上述相关工作。一般来说，传感器的能力越强，任务场景越窄，识别准确率就越高，TypeBoard在表格中的位置决定了它有很高的识别上限。这使得我们有机会探索一个全新的问题：在防误触算法十分强大的情况下，用户的行为会发生改变吗？据我们所知，还没有工作很好地回答过这个问题。有的实验设置在采集数据时不给出反馈[xx]，有的实验则是给出了未经防误触算法过滤的反馈[xx]，这都不能正确反映用户在鲁棒技术上的行为模型。在这份工作中，我们首次揭示了防误触能力和用户行为之间的相互影响，并通过迭代的方法，不断地采集用户数据、训练机器学习模型，最终实现了鲁棒的防误触算法。
 
-在我们的这份工作中，我们将任务focus在文本输入任务上，在输入信道上，我们也引入了压力屏的压力数据，以增强识别的准确率，希望把这个防误触的问题研究透彻，也把防误触的算法做到完美。有一份叫TapBoard的工作和这篇论文很像[xx]，但它有不少缺陷。例如xx，xx，xx。另外，TapBoard在实验设计上有一个错误，他们通过一个基于誊写任务的对比实验，证明了TapBoard的输入效率和传统触屏键盘无异，这是以偏概全的。我们通过Pilot-study发现，在誊写等快速打字的任务中，用户很少将手指休息在触屏上，因此TapBoard无法证明用户在写日记等任务中不会因为手指的休息造成误触问题。
+【表格：触屏防误触算法的2*2分类，一维是传感器是否现呈，另一维是任务场景是否限定】
 
-我们这份工作和先前工作相比的一个特点是，我们首次考虑到了防误触能力和用户行为之间互相影响的效应。有的实验设置在采集数据时不给出反馈[xx]，有的实验是给出了未经防误触算法过滤的反馈[xx]，这都不能正确反映用户在最终技术上的心理模型。在这份工作中，我们采用迭代式的方法，重复地采集用户数据和优化机器学习算法，最终总结出用户在一个防误触触屏键盘上打字的行为，并根据此用户行为，设计了一款鲁棒的防误触触屏键盘。
+有一份叫TapBoard的工作和我们的论文TypeBoard很类似\cite{2013-TapBoard}，我们研究的都是触屏打字场景下区分打字点击和误触。我们的工作和TapBoard相比最大的不同是对“误触”的不同定义：在TapBoard中，误触指的是触摸时间超过xx毫秒或者移动距离超过xx毫米的点击，用户需要主动适应这一设定；而在TypeBoard中，误触指的是“不用来表达按键意图的点击”，是技术主动去适应用户的行为。TapBoard有许多局限性：首先也是最重要的是，由于TapBoard要求用户主动适应技术，这无法形成最自然、舒适的用户行为[xx]，也带来了一定的学习成本；；第二，TapBoard采用阈值方法识别误触，其准确率有限，在用户主动适应的情况下只有大约97\%的准确率；第三，TapBoard在手指抬起的瞬间才能识别点击意图，与正规键盘中手指点击瞬间就完成识别相比有很大的延迟，这会影响输入效率和用户体验[xx]；第四，TapBoard声称它有两大好处，一是用户可以休息手指，二是其输入效率与原本键盘一样。这个结论是错误的，TapBoard的实验只证明了用户在边写边说的实验中会休息手指，而在誊写任务下输入效率与原本触屏键盘无异，然而根据我们的实验结果，用户在誊写任务下并不会休息手指。因此以上两个好处并不同时成立，也不具有跨任务的普适性。相比之下，我们的工作TypeBoard克服了TapBoard所有的局限性。
 
-2. 触屏键盘上支持防误触的好处
+% 如表格xx所示，我们用一个2*2的空间来展示了我们这份工作的位置，其中一维是传感器能力，另一维是任务场景。可以看到，我们的工作是少有的，两个维度上都倾向于“提高精度”的，这使得我们有机会获得一个很高的准确率，从而探索一个全新的问题：在防误触算法十分鲁棒的前提下，用户的行为会发生变化吗？据我们所知，还没有工作很好地回答过这个问题，有的实验设置在采集数据时不给出反馈[xx]，有的实验是给出了未经防误触算法过滤的反馈[xx]，这都不能正确反映用户在最终技术上的心理模型。在这份工作中，我们首次揭示了防误触能力和用户行为之间的相互影响，并通过迭代的方法，不断地采集用户数据、训练机器学习模型，最终同时一个十分鲁棒的防误触算法，并发现用户在其上的打字行为发生本质的改变。
+
+\subsection{Benefit from Unintentional Touch Rejection}
 
 (1) 有机会弥补触屏键盘上没有触摸状态的问题
 
-物理键盘上有release/touch/press三态，而触屏键盘上只有release/press两态[xx]。touch状态在物理键盘上承担着重要的作用，具体有三点：1、物理键盘上的触觉纹理可以让用户不看键盘的情况下对齐手指，从而支持盲打[xx]；2、键帽能够给用户提供触觉反馈，确认一次点击操作，这不仅增强了用户体验[xx]，也显著地提升了打字速度[xx]；3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度[xx]。触屏键盘上touch状态的缺少，使得触屏上的打字效率显著低于物理键盘打字的效率。
+物理键盘上有release/touch/press三态，而触屏键盘上只有release/press两态[xx]。touch状态在物理键盘上承担着重要的作用，具体有三点：1、物理键盘上的触觉纹理可以让用户不看键盘的情况下对齐手指，从而支持盲打[xx]；2、键帽能够给用户提供触觉反馈，确认一次点击操作，这不仅增强了用户体验[xx]，也显著地提升了打字速度[xx]；好的键帽设计还可以增强用户对触碰时间的把控[xx]。3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度[xx]。触屏键盘上touch状态的缺少，使得触屏上的打字效率显著低于物理键盘打字的效率。
 
 有不少工作尝试弥补物理键盘和触屏键盘之间的gap。xx通过加装xx硬件，提供了纹理信息，达到了xx效果。xx通过加装xx硬件，提供了用户在打字时的触觉反馈，达到了xx的效果。xx采用简单的时间和距离阈值方法来区分打字和误触，从而允许用户将手指休息在触屏键盘上。然而，以上对触屏键盘的体验提升，都是以能够正确区分打字和误触为前提的。例如，对于屏幕上有tactile反馈的工作中[xx]，只有在触屏键盘能够很好地防误触地情况下，用户才会去摸键盘上的纹理，从而使能触屏上的盲打。
+
+[2013-TouchDisplay]
+Palm rejection (PR) technology may reduce shoulder loads by allowing the palms to rest on the display and increase productivity by registering the touched content and fingertips through the palms rather than shoulders.
+
+[2014-PenMightier]
+The digital devices prevented participants from interacting naturally because participants altered their behaviour to avoid making unintended, accidental markings. With the passive system, participants were “forced to write in an
+uncomfortable position to avoid the ‘palm touch’ screen” and
+“could not rest [their] palm on the display without disrupting it –
+highly unusable”. With the active system, participants were “more
+willing to interact because [they] could rest [their] palm on the
+surface with no problems” and “the Slate didn’t have the palm
+‘touchy’ problems that the iPad did.
 
 (2) 在touchscreen上无缝区分keyboard和其它有意输入
 
@@ -69,5 +92,4 @@ We present PalmTouch, an additional input modality that differentiates between t
 use as a shortcut and for improving reachability.  We have developed a model that differentiates between finger and palm touch with an accuracy of 99.53\% in realistic scenarios.
 
 [??] 比如处理漂移问题。
-
 
