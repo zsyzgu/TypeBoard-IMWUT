@@ -36,29 +36,26 @@
 
 【表格：触屏防误触算法的2*2分类，一维是传感器是否现呈，另一维是任务场景是否限定】
 
-有一份叫TapBoard的工作和我们的论文TypeBoard很类似\cite{2013-TapBoard}，我们研究的都是触屏打字场景下区分打字点击和误触。我们的工作和TapBoard相比最大的不同是对“误触”的不同定义：在TapBoard中，误触指的是触摸时间超过xx毫秒或者移动距离超过xx毫米的点击，用户需要主动适应这一设定；而在TypeBoard中，误触指的是“不用来表达按键意图的点击”，是技术主动去适应用户的行为。TapBoard有许多局限性：首先也是最重要的是，由于TapBoard要求用户主动适应技术，这无法形成最自然、舒适的用户行为[xx]，也带来了一定的学习成本；；第二，TapBoard采用阈值方法识别误触，其准确率有限，在用户主动适应的情况下只有大约97\%的准确率；第三，TapBoard在手指抬起的瞬间才能识别点击意图，与正规键盘中手指点击瞬间就完成识别相比有很大的延迟，这会影响输入效率和用户体验[xx]；第四，TapBoard声称它有两大好处，一是用户可以休息手指，二是其输入效率与原本键盘一样。这个结论是错误的，TapBoard的实验只证明了用户在边写边说的实验中会休息手指，而在誊写任务下输入效率与原本触屏键盘无异，然而根据我们的实验结果，用户在誊写任务下并不会休息手指。因此以上两个好处并不同时成立，也不具有跨任务的普适性。相比之下，我们的工作TypeBoard克服了TapBoard所有的局限性。
+有一份叫TapBoard的工作和我们的论文TypeBoard很类似\cite{2013-TapBoard}，我们研究的都是触屏打字场景下区分打字点击和误触。我们的工作和TapBoard相比最大的不同是对“误触”的不同定义：在TapBoard中，误触指的是触摸时间超过xx毫秒或者移动距离超过xx毫米的点击，用户需要主动适应这一设定；而在TypeBoard中，误触指的是“不用来表达按键意图的点击”，是技术主动去适应用户的行为。TapBoard有许多局限性：首先也是最重要的是，由于TapBoard要求用户主动适应技术，这无法形成最自然、舒适的用户行为[xx]，也带来了一定的学习成本；第二，TapBoard采用阈值方法识别误触，其准确率有限，在用户主动适应的情况下只有大约97\%的准确率，这意味着用户行为大约1分钟就要被误识别一次；第三，TapBoard在手指抬起的瞬间才能识别点击意图，与正规键盘中手指点击瞬间就完成识别相比有很大的延迟，这会影响输入效率和用户体验[xx]；第四，TapBoard声称它有两大好处，一是用户可以休息手指，二是其输入效率与原本键盘一样。这个结论是错误的，TapBoard的实验只证明了用户在边写边说的实验中会休息手指，而在誊写任务下输入效率与原本触屏键盘无异，然而根据我们的实验结果，用户在誊写任务下并不会休息手指。因此以上两个好处并不同时成立，也不具有跨任务的普适性。相比之下，我们的工作TypeBoard克服了TapBoard所有的局限性。
 
 % 如表格xx所示，我们用一个2*2的空间来展示了我们这份工作的位置，其中一维是传感器能力，另一维是任务场景。可以看到，我们的工作是少有的，两个维度上都倾向于“提高精度”的，这使得我们有机会获得一个很高的准确率，从而探索一个全新的问题：在防误触算法十分鲁棒的前提下，用户的行为会发生变化吗？据我们所知，还没有工作很好地回答过这个问题，有的实验设置在采集数据时不给出反馈[xx]，有的实验是给出了未经防误触算法过滤的反馈[xx]，这都不能正确反映用户在最终技术上的心理模型。在这份工作中，我们首次揭示了防误触能力和用户行为之间的相互影响，并通过迭代的方法，不断地采集用户数据、训练机器学习模型，最终同时一个十分鲁棒的防误触算法，并发现用户在其上的打字行为发生本质的改变。
 
 \subsection{Benefit from Unintentional Touch Rejection}
 
-(1) 有机会弥补触屏键盘上没有触摸状态的问题
+(1) 弥补触屏键盘和物理键盘之间的GAP
 
-物理键盘上有release/touch/press三态，而触屏键盘上只有release/press两态[xx]。touch状态在物理键盘上承担着重要的作用，具体有三点：1、物理键盘上的触觉纹理可以让用户不看键盘的情况下对齐手指，从而支持盲打[xx]；2、键帽能够给用户提供触觉反馈，确认一次点击操作，这不仅增强了用户体验[xx]，也显著地提升了打字速度[xx]；好的键帽设计还可以增强用户对触碰时间的把控[xx]。3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度[xx]。触屏键盘上touch状态的缺少，使得触屏上的打字效率显著低于物理键盘打字的效率。
+众所周知，物理键盘上的打字速度远远超过触屏键盘上的打字速度（xx-WPM vs xx-WPM）。xx等人[xx]指出，物理键盘上有release/touch/press三种状态，而触屏键盘上只有release/press两种状态。物理键盘上多出来的touch(but not press)状态是其支持高校文本输入的重要特征，因为它为物理键盘带来了三大好处：1、物理键盘上提供的tactile landmark可以让用户在eye-free的情况下align-finger，从而使能了盲打，大大提高了打字速度；2、键帽给用户提供了触觉反馈，这一反馈可以让用户确认点击的生效，真正地提高输入效率[xx]，也能提高用户对点击时间的掌控[xx]；3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度[xx]。
 
-有不少工作尝试弥补物理键盘和触屏键盘之间的gap。xx通过加装xx硬件，提供了纹理信息，达到了xx效果。xx通过加装xx硬件，提供了用户在打字时的触觉反馈，达到了xx的效果。xx采用简单的时间和距离阈值方法来区分打字和误触，从而允许用户将手指休息在触屏键盘上。然而，以上对触屏键盘的体验提升，都是以能够正确区分打字和误触为前提的。例如，对于屏幕上有tactile反馈的工作中[xx]，只有在触屏键盘能够很好地防误触地情况下，用户才会去摸键盘上的纹理，从而使能触屏上的盲打。
+有不少工作通过提供touch状态来增强触屏键盘的能力，人们从硬件和软件两个层面来作出努力。在硬件层面上，TouchFire[TapBoard-30]和SLAP Widget[TapBoard-31]在触屏键盘上提供了一个tangible keyboard object，只有keystrokes会通过机械结果传输到触屏上，而其它的点击会被屏蔽。Tactus technology [TapBoard-29]开发了一款可以变形的触摸屏，可以动态地生成物理凸起。TeslaTouch [TapBoard-3] LATPaD [TapBoard-16], and STIMTAC [TapBoard-1]都展示了动态可变化的表面纹理，以上技术都可以为触屏打字用户提供tactile landmarks，从而支持触屏上的盲打。 在软件层面上，TapBoard采用简单的触摸时间和距离阈值来区分打字和误触，从而允许用户将手指休息在触摸屏上[xx]，有利于降低用户在长时间触屏打字时的疲劳感\cite{2013-TouchDisplay}。
+
+在触碰上区分打字点击和误触是增加touch状态的一个非常直接的想法，我们可以将有意的打字点击映射为物理键盘上的press状态，将误触映射为物理键盘上的touch状态[xx, xx]。
 
 [2013-TouchDisplay]
 Palm rejection (PR) technology may reduce shoulder loads by allowing the palms to rest on the display and increase productivity by registering the touched content and fingertips through the palms rather than shoulders.
 
 [2014-PenMightier]
-The digital devices prevented participants from interacting naturally because participants altered their behaviour to avoid making unintended, accidental markings. With the passive system, participants were “forced to write in an
-uncomfortable position to avoid the ‘palm touch’ screen” and
-“could not rest [their] palm on the display without disrupting it –
-highly unusable”. With the active system, participants were “more
-willing to interact because [they] could rest [their] palm on the
-surface with no problems” and “the Slate didn’t have the palm
-‘touchy’ problems that the iPad did.
+The digital devices prevented participants from interacting naturally because participants altered their behaviour to avoid making unintended, accidental markings. With the passive system, participants were “forced to write in an uncomfortable position to avoid the ‘palm touch’ screen” and “could not rest [their] palm on the display without disrupting it –
+highly unusable”. With the active system, participants were “more willing to interact because [they] could rest [their] palm on the surface with no problems” and “the Slate didn’t have the palm ‘touchy’ problems that the iPad did.
 
 (2) 在touchscreen上无缝区分keyboard和其它有意输入
 
@@ -67,9 +64,7 @@ surface with no problems” and “the Slate didn’t have the palm
 还可以区分typing和stylus输入
 
 [2014-PenUnint]
-
 [2014-PenMightier]
-
 [2014-PalmRejection]
 
 [Exploring and Understanding Unintended Touch during Direct Pen Interaction]
