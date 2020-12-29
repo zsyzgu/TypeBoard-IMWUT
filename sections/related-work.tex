@@ -44,47 +44,14 @@
 
 (1) 弥补触屏键盘和物理键盘之间的GAP
 
-众所周知，物理键盘上的打字速度远远超过触屏键盘上的打字速度（xx-WPM vs xx-WPM）。xx等人[xx]指出，物理键盘上有release/touch/press三种状态，而触屏键盘上只有release/press两种状态。物理键盘上多出来的touch(but not press)状态是其支持高校文本输入的重要特征，因为它为物理键盘带来了三大好处：1、物理键盘上提供的tactile landmark可以让用户在eye-free的情况下align-finger，从而使能了盲打，大大提高了打字速度；2、键帽给用户提供了触觉反馈，这一反馈可以让用户确认点击的生效，真正地提高输入效率[xx]，也能提高用户对点击时间的掌控[xx]；3、在物理键盘上，用户可以将手指休息在键位上，降低了疲劳程度[xx]。
+如我们所知，物理键盘上的打字速度远远超过触屏键盘上的打字速度（xxWPM vs. xxWPM）。物理键盘上有release/touch/press三种状态，而触屏键盘上只有release/press两种状态。Kim等人\cite{2013-TapBoard}指出，物理键盘上多出来的touch状态是an important factor in the usability of a keyboard，因此在触屏键盘上增添touch状态能够有效地弥补触屏键盘和物理键盘之间的GAP。在触屏上区分打字点击和误触是增加touch状态的一个直接的想法：我们可以将触屏上的有意点击映射为物理键盘上的press状态，将触屏上的误触映射为物理键盘上的touch状态\cite{2013-TapBoard,2016-TapBoard2}。拥有touch状态的触屏键盘有多重好处：首先，用户可以将手指休息在触屏键盘上，降低手指悬空打字的疲劳\cite{2013-TouchDisplay}；第二，因为用户可以轻轻触摸触屏而不触发打字，我们可以通过xx\cite{2011-Stimtac,2010-TeslaTouch,2011-Enhancing}或者在触屏上加装硬件膜\cite{2008-Slap,2020-TouchFire}的方法来提供触觉landmarks，从而支持触屏键盘上的盲打。
 
-有不少工作通过提供touch状态来增强触屏键盘的能力，人们从硬件和软件两个层面来作出努力。在硬件层面上，TouchFire[TapBoard-30]和SLAP Widget[TapBoard-31]在触屏键盘上提供了一个tangible keyboard object，只有keystrokes会通过机械结果传输到触屏上，而其它的点击会被屏蔽。Tactus technology [TapBoard-29]开发了一款可以变形的触摸屏，可以动态地生成物理凸起。TeslaTouch [TapBoard-3] LATPaD [TapBoard-16], and STIMTAC [TapBoard-1]都展示了动态可变化的表面纹理，以上技术都可以为触屏打字用户提供tactile landmarks，从而支持触屏上的盲打。 在软件层面上，TapBoard采用简单的触摸时间和距离阈值来区分打字和误触，从而允许用户将手指休息在触摸屏上[xx]，有利于降低用户在长时间触屏打字时的疲劳感\cite{2013-TouchDisplay}。
+% 有不少工作通过提供touch状态来增强触屏键盘的能力，人们从硬件和软件两个层面来作出努力。在硬件层面上，TouchFire[TapBoard-30]和SLAP Widget[TapBoard-31]在触屏键盘上提供了一个tangible keyboard object，只有keystrokes会通过机械结果传输到触屏上，而其它的点击会被屏蔽。Tactus technology [TapBoard-29]开发了一款可以变形的触摸屏，可以动态地生成物理凸起。TeslaTouch [TapBoard-3] LATPaD [TapBoard-16], and STIMTAC [TapBoard-1]都展示了动态可变化的表面纹理，以上技术都可以为触屏打字用户提供tactile landmarks，从而支持触屏上的盲打。 在软件层面上，TapBoard采用简单的触摸时间和距离阈值来区分打字和误触，从而允许用户将手指休息在触摸屏上[xx]，有利于降低用户在长时间触屏打字时的疲劳感\cite{2013-TouchDisplay}。
 
-在触碰上区分打字点击和误触是增加touch状态的一个非常直接的想法，我们可以将有意的打字点击映射为物理键盘上的press状态，将误触映射为物理键盘上的touch状态[xx, xx]。
+% [2013-TouchDisplay] Palm rejection (PR) technology may reduce shoulder loads by allowing the palms to rest on the display and increase productivity by registering the touched content and fingertips through the palms rather than shoulders.
 
-[2013-TouchDisplay]
-Palm rejection (PR) technology may reduce shoulder loads by allowing the palms to rest on the display and increase productivity by registering the touched content and fingertips through the palms rather than shoulders.
+% [2014-PenMightier] The digital devices prevented participants from interacting naturally because participants altered their behaviour to avoid making unintended, accidental markings. With the passive system, participants were “forced to write in an uncomfortable position to avoid the ‘palm touch’ screen” and “could not rest [their] palm on the display without disrupting it – highly unusable”. With the active system, participants were “more willing to interact because [they] could rest [their] palm on the surface with no problems” and “the Slate didn’t have the palm ‘touchy’ problems that the iPad did.
 
-[2014-PenMightier]
-The digital devices prevented participants from interacting naturally because participants altered their behaviour to avoid making unintended, accidental markings. With the passive system, participants were “forced to write in an uncomfortable position to avoid the ‘palm touch’ screen” and “could not rest [their] palm on the display without disrupting it –
-highly unusable”. With the active system, participants were “more willing to interact because [they] could rest [their] palm on the surface with no problems” and “the Slate didn’t have the palm ‘touchy’ problems that the iPad did.
+(2) 将误触利用为有用的输入信息
 
-(2) 在touchscreen上无缝区分keyboard和其它有意输入
-
-如果能够在touchsreen上identify-typing-action，就可以仅使用触摸屏的同一块区域，同时支持文本输入和其它交互，如触摸屏控制鼠标pointing[xx]，又如其它的一些手势命令[xx]等等。TapBoard2能够有效地将打字的触摸事件和pointing的触摸事件正确区分，使得同一块触摸屏及支持了文本输入，又支持了触摸板控制鼠标。xx将手掌的误触作为输入通道。
-
-还可以区分typing和stylus输入
-
-[2014-PenUnint]
-[2014-PenMightier]
-[2014-PalmRejection]
-
-[Exploring and Understanding Unintended Touch during Direct Pen Interaction]
-
-(3) 将原本应该是误触的触碰利用为输入信息
-
-有的相关工作将误触作为有用的输入信息，从而提供额外的输入通道。
-
-Matulic et al. [2017-HandContact] extended hand interactions from fingertips to the whole hand in hand-shape based interaction. Tabletop interaction can be enriched by considering whole hands as input instead of only fingertips. We describe a
-generalised, reproducible computer vision algorithm to recognise hand contact shapes, with support for arm rejection, as well as dynamic properties like finger movement
-and hover. A controlled experiment shows the algorithm can detect seven different contact shapes (such as fist, flat palm and spread hand) with roughly 91\% average accuracy如果能将type点击事件和手掌的触摸事件区分开来，就可以支持hand contact shape所支持的交互方式。
-
-Zhang et al. [77] proposed to leverage various hand postures such as using the palm to augment pen and touch interactions.
-
-[2018-PalmTouch]
-
-将大鱼际的误触作为模式切换。
-
-We present PalmTouch, an additional input modality that differentiates between touches of fingers and the palm. We present different use cases for PalmTouch, including the
-use as a shortcut and for improving reachability.  We have developed a model that differentiates between finger and palm touch with an accuracy of 99.53\% in realistic scenarios.
-
-[??] 比如处理漂移问题。
-
+我们的目标是去除触屏上的误触，从而支持流畅的文本输入法。然而，有的文献用另一个视角来看待误触，他们将误触利用为有用的信息，从而提供额外的输入通道。Matulic等人\cite{2017-HandContact}将手指交互拓展为包含手部形状的全手型交互。他们采用了一个基于计算机视觉的算法来在tabletop上识别hand-contact-shapes，能够以大约91\%的准确率识别检测七种不同的contact-shapes(such as fist, flat palm and spread hand)。 Zhang等人\cite{2019-PenTouch}提出利用多样误触信息来增强笔和触屏交互，例如根据大鱼际误触来确定持握手的位置，从而支持鲁棒的屏幕自动旋转功能。PalmTouch is \cite{2018-PalmTouch} an additional input modality that differentiates between touches of fingers and the palm. The use cases for PalmTouch include the use as a shortcut and for improving reachability. The authors have developed a model that differentiates between finger and palm touch with an accuracy of 99.53\% in realistic scenarios. 在触屏键盘上，pointing动作也算是误触的一种，TapBoard2\cite{2016-TapBoard2}通过阈值的方法区分了Typing和Pointing操作，从而将文本输入和光标操控统一到一个触摸屏当中，解决了频繁切换键鼠带来的低效问题\cite{2006-TouchType}。
