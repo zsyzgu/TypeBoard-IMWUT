@@ -1,36 +1,57 @@
 \section{Study 1: User Behavior on Imaginary TypeBoard}
 
-本实验的目标是研究用户在想象中防误触键盘上的打字行为，从而指导触屏键盘防误触算法的设计。由于（不正确的）反馈可能会影响用户的输入行为，在本实验中，用户在无反馈的键盘上打字，用户不能真的键入字母，而是想象可以键入字母。另外，用户需要假想键盘可以防止误触，调整自己的打字行为。
+In this study, we collected data from participants' typing actions on a force-sensitive touchpad. The motivation was to investigate users' typing behavior on an imaginary touchscreen keyboard that can "perfectly reject unintentional touch", based on which we can design the algorithm of rejecting unintentional touch. Because (incorrect) feedback will affect users' behaviors, in this study, participants typed on a touchpad without any feedback. Participants could not enter words by typing on the touchpad, instead they imagined that the desired words are entered. Besides, participants need to adapts their typing behaviors according to the imagination that the keyboard can perfectly reject unintentional touch.
+
+%本实验的目标是研究用户在想象中防误触键盘上的打字行为，从而指导触屏键盘防误触算法的设计。由于（不正确的）反馈可能会影响用户的输入行为，在本实验中，用户在无反馈的键盘上打字，用户不能真的键入字母，而是想象可以键入字母。另外，用户需要假想键盘可以防止误触，调整自己的打字行为。
 
 \subsection{Participants}
 
-我们从校园中邀请了16名用户被试，年龄从xx到xx不等，平均数xx，标准差xx，xx名女性。所有的被试都是右撇子，所有用户有超过xx年的手机文本输入经历，xx名用户常用平板电脑进行文本输入。
+We recruited 16 participants from the campus (aged from xx to xx, M = xx.xx, SD = xx.xx, xx females). All the participants were right handed and native Chinese speaker. They have used software keyboards on smartphones for not less than xx years. xx of the 16 participants were familiar with software keyboards on tablets.
 
 \subsection{Design and Procedure}
 
-在实验开始前，实验者会告诉用户两点注意事项：第一，本实验的键盘不会提供任何反馈，用户不能键入字母，而是想象自己键入了字母。由于用户的母语是中文，在输入的过程中会涉及到选词，用户只需想象想要的单词总是在输入法候选词的第一位。第二，用户需要想象该键盘可以完美地防误触，并根据这一条件调整自己的输入行为，比如，在思考问题的时候可以将手指休息在键盘上。这种行为调整不是强制性的，用户可以根据自己的实际情况作出选择。在实验者的介绍以后，用户有5分钟的时间自由地熟悉本实验的任务和要求。
+Figure xx illustrate the experimental setting. There was a Morph Sensel [xx] force-sensitive touchpad on the desk. We placed a windows surface tablet on the touchpad, covering less than half of the pad. We drew a QWERTY layout on the touchpad using highlighter pens. This combination of touchpad and table took place of the force-sensitive touchscreen, which is expected to be commercialized in the future. Participants filled in a Microsoft Word document to complete the experimental tasks. They touched on the tablet for pointing, and typed on the touchpad to "enter words". The system recorded every touches and the screencast during the experiment.
 
-正式实验分为4个session，分别收集了用户在填写个人信息、描述个人爱好、模拟开卷考试和看图写话这四种不同的文本输入任务下的打字数据，我们通过拉丁方来平衡每个用户做这四个任务的顺序。我们不像大多数文本输入相关工作一样[xx,xx,xx]，将誊写作为文本输入任务，因为我们通过预实验发现，用户在誊写任务中很少将手指放在键盘上，误触的采集效率不高。
+%图xx展示了实验的设置，桌子上放着一块morph-sensel压力触摸板，在板子的上半部分叠放了一个windows surface，我们用这个组合来模拟未来可以支持压力输入的平板电脑。用户可以根据自己的需求调整椅子的高度、压力触摸板和显示器的位置。压力触摸板上用荧光笔画上了26键Qwerty键盘布局，用于提示用户每个按键的位置。用户在这个系统中通过填写word文档的方式来完成文本输入任务，系统会记录用户每次触摸的信息，以及给实验过程录屏。
 
-图xx展示了实验的设置，桌子上放置着一块morph-sensel压力触摸板，在板子的上半部分叠放了一个windows surface，我们用这一个整体来模拟未来支持压力输入的平板电脑。用户可以根据自己的需求调整椅子的高度、压力触摸板和显示器的位置。压力触摸板上用铅笔画了26键Qwerty键盘布局，用于提示用户每个按键的位置。用户通过填写一个word文档来完成这四个文本输入任务的，图xx展示了这个word任务文档中每种任务的例子，每个任务的具体描述如下。
+The experiment included four sessions of text entry tasks: (1) filling in personal information, (2) describing personal tastes, (3) open-book examination, and (4) picture writing. We counterbalanced the order of the four tasks using a balanced latin square. We did not include transcription as a task as many other studies of text entry do [xx,xx,xx], because our pilot study showed that participants seldom rested their fingers on the touchpad in a transcription task, resulting in low efficiency of obtaining unintentional touches. The details of the four tasks are as follows:
+
+%实验分为四个session，分别对应四个不同的文本输入任务：填写个人信息、描述个人爱好、模拟开卷考试和看图写话。我们通过拉丁方来平衡每个用户做这四个任务的顺序。我们不像大多数文本输入相关工作一样[xx,xx,xx]，将誊写作为文本输入任务，因为我们通过预实验发现，用户在誊写任务中很少将手指放在键盘上，误触的采集效率不高。图xx展示了每个任务的例子，每个任务的具体描述如下。
 
 \begin{enumerate}
-	\item{\textbf{填写个人信息任务：}word文档中有一个表格，其中包含用户姓名、性别、专业等问题。用户操作触摸板（想象中的TypeBoard键盘）和平板电脑上的直接触摸填写表格。为了保护用户的隐私，用户可以填写错误的信息，前提是他能记住他填写的内容，以便标注时作为参考。用户需要点击平板电脑来切换表格中的焦点，然后再触摸板上敲击“输入”，想象所需字母被填写在了word文档中。该任务模拟了真实场景中，需要频繁切换键鼠操作的输入类型。}
-	\item{\textbf{描述个人爱好任务：}word文档中有一个问卷，其中包含“最喜欢的城市”、“最喜爱的食物”等个人喜好相关的问题。和任务一相同，用户通过键鼠配合操作完成问卷的填写。该任务模拟了真实场景中简单的问卷填写任务[xx]。}
-	\item{\textbf{模拟开卷考试任务：}word文档中包含若干有一定难度的知识性问题，如“比利时的首都在哪里”、“元素周期表中第50号元素时？”。在此任务中，用户很可能不知道问题的正确答案，此时她需要通过搜索引擎来得到答案。用户在使用搜索引擎时存在一个问题是，她输入的文字并不能真的上屏，此时我们要求用户边输入边把搜索的关键词说出来，实验者帮忙使用键盘完成搜索。both搜索的过程和填写试卷的过程是本实验采集的数据。该任务模拟了真实场景中常见的搜索引擎任务。}
-	\item{\textbf{看图写话任务：}word文档中包含了一张简笔画（如图xx的xx所示），用户需要根据这幅图写一个五句话的小作文。在此任务中，我们同样要求用户边说边写，实验者在一旁进行速记，这是为了在标注中给用户提高上下文。该任务模拟了真实场景中的办公场景[xx]，这一类任务有着xx的特点。}
-	%\item{\textbf{誊写任务：}word文档中包含了一句话，用户需要尽可能快地将这句话誊写五次。每个用户所誊写的句子都是不同的，都是从phrase-set[xx]中随机抽取。誊写任务是文本输入工作中最常见的评测任务，适用于评测输入法的输入效率上限。}
+	\item{\textbf{Filling in personal information:} In the task document, there was a table of xx question about personal information, such as name, gender, and so on. Participant direct touched on the tablet to select what to fill, and typed on the touchpad the "enter words". To protect users' privacy, users were allowed to fill in fake information. This assignment represented those text entry tasks that require frequently switching between pointing and typing.}
+	\item{\textbf{Describing personal tastes:} There was another table of xx question about personal tastes, such as "the favorite city", "the favorite fruit", and so on. Participant touched on the tablet for pointing and pressed on the touchpad for typing, as if they were doing office work. Participant were allowed to fill in fake information.}
+	\item{\textbf{Open-book examination:} The "exam" consisted of five hard questions such as "What is the 50th element of the periodic table?". Participants could hardly know the answer, so that they needed to use the search engine. The system recorded both the behaviors of answering questions and searching in the Internet. Because the participants could not enter words in the search engine, they needed to speak out when typing, so that the experimenter could replaced them to enter the words. This assignment represented those text entry tasks that require using the search engine.}
+	\item{\textbf{Picture writing:} There was a picture (as figure xx shown) in the task document. Participants needed to describe the picture in five sentences and wrote down the story in the document. We asked participants to speak out while typing, so that the experimenter could replaced the participants to enter the words. This assignment represent the text entry tasks that the users need to think while writing.}
 \end{enumerate}
 
-在每个session结束后，用户需要通过一个交互式程序来标注刚刚所进行session的报点数据，该程序同时展示了实验过程中的录屏视频和压力板图像，用户需要结合录屏提供的上下文信息，标注压力板图像中的报点。如图xx所示，我们在平板电脑上外接了鼠标来提高用户的标注效率。压力图像中所包含的报点初始默认值为负例（误触），用红色点表示。用户若认为一个报点是正例（打字事件），则需要用鼠标左键将该点标为绿色；用户可以通过鼠标右键将报点重新标为红色；用户若不清楚该报点是正例还是负例，则需要用鼠标中键将该点标为蓝色，表示剔除出数据集。本实验的输入任务部分，四个session加起来大约需要15分钟，标注过程大约45分钟，每两个session之间休息5分钟时间来避免疲劳，实验总时长为80分钟。
+%\begin{enumerate}
+	%\item{\textbf{填写个人信息任务：}word文档中有一个表格，其中包含用户姓名、性别、专业等问题。用户操作触摸板（想象中的TypeBoard键盘）和平板电脑上的直接触摸填写表格。为了保护用户的隐私，用户可以填写错误的信息，前提是他能记住他填写的内容，以便标注时作为参考。用户需要点击平板电脑来切换表格中的焦点，然后再触摸板上敲击“输入”，想象所需字母被填写在了word文档中。该任务模拟了真实场景中，需要频繁切换键鼠操作的输入类型。}
+	%\item{\textbf{描述个人爱好任务：}word文档中有一个问卷，其中包含“最喜欢的城市”、“最喜爱的食物”等个人喜好相关的问题。和任务一相同，用户通过键鼠配合操作完成问卷的填写。该任务模拟了真实场景中简单的问卷填写任务[xx]。}
+	%\item{\textbf{模拟开卷考试任务：}word文档中包含若干有一定难度的知识性问题，如“比利时的首都在哪里”、“元素周期表中第50号元素时？”。在此任务中，用户很可能不知道问题的正确答案，此时她需要通过搜索引擎来得到答案。用户在使用搜索引擎时存在一个问题是，她输入的文字并不能真的上屏，此时我们要求用户边输入边把搜索的关键词说出来，实验者帮忙使用键盘完成搜索。both搜索的过程和填写试卷的过程是本实验采集的数据。该任务模拟了真实场景中常见的搜索引擎任务。}
+	%\item{\textbf{看图写话任务：}word文档中包含了一张简笔画（如图xx的xx所示），用户需要根据这幅图写一个五句话的小作文。在此任务中，我们同样要求用户边说边写，实验者在一旁进行速记，这是为了在标注中给用户提高上下文。该任务模拟了真实场景中的办公场景[xx]，这一类任务有着xx的特点。}
+	%\item{\textbf{誊写任务：}word文档中包含了一句话，用户需要尽可能快地将这句话誊写五次。每个用户所誊写的句子都是不同的，都是从phrase-set[xx]中随机抽取。誊写任务是文本输入工作中最常见的评测任务，适用于评测输入法的输入效率上限。}
+%\end{enumerate}
+
+Before the experiment started, the participant had five minutes to familiarize himself with the tasks and the requirements of the experiment. During the warm-up phase, the participant "typed" on the touchpad freely, while the experimenter reminded the user of two points. First, the keyboard did not provide any feedback. Participants could not enter words, but imaged that they entered words. Because the users' first language are Chinese, which involved word selection in the text entry method, users assumed that the desired word is always the first one of the candidate words. Second, users needed to imagine that the keyboard can perfectly prevent unintentional touches, and adjust their behavior according to this assumption. For example, they could rest their fingers on the keyboard while thinking. This is not mandatory. Participants could make choices as they wished.
+
+%在实验开始前，用户有5分钟的时间自由地在本系统中熟悉实验的任务和要求，在热身的过程中，实验者让用户注意两点：第一，本实验的键盘不会提供任何反馈，用户不能键入字母，而是想象自己键入了字母。由于用户的母语是中文，在输入的过程中会涉及到选词，用户只需想象想要的单词总是在输入法候选词的第一位。第二，用户需要想象该键盘可以完美地防误触，并根据这一条件调整自己的输入行为，比如，在思考问题的时候可以将手指休息在键盘上。这种行为调整不是强制性的，用户可以根据自己的实际情况作出选择。
+
+After finishing each session of task, the participant labeled the data through an interactive program. The program showed the capacitive images of touchpad and the screencast of tablet at the same time. As figure xx shows, there were some red points on the capacitive images that showed the touchpoints reported by the touchpad. Participants labeled the intended touches as green points. Because participants got context information from the screencast, they were able to identify most intentional touches. If participants were not sure, they could label the touchpoint as a blue point to remove the data. In average, participants spent 15 minutes to finish the text entry tasks and spent 45 minutes to label the data. Participants rested for five minutes between two sessions to avoid fatigue. The study was generally completed within 80 minutes.
+
+%在每个session结束后，用户需要通过一个交互式程序来标注刚刚所进行session的报点数据，该程序同时展示了实验过程中的录屏视频和压力板图像，用户需要结合录屏提供的上下文信息，标注压力板图像中的报点。如图xx所示，我们在平板电脑上外接了鼠标来提高用户的标注效率。压力图像中所包含的报点初始默认值为负例（误触），用红色点表示。用户若认为一个报点是正例（打字事件），则需要用鼠标左键将该点标为绿色；用户可以通过鼠标右键将报点重新标为红色；用户若不清楚该报点是正例还是负例，则需要用鼠标中键将该点标为蓝色，表示剔除出数据集。本实验的输入任务部分，四个session加起来大约需要15分钟，标注过程大约45分钟，每两个session之间休息5分钟时间来避免疲劳，实验总时长为80分钟。
 
 \subsection{Apparatus}
 
-Morph Sensel简介，包含多少像素的压力数据，压力数据的范围是xx，精度是xx。自带报点功能，多大的触摸点、多重的点击算是一个报点，压力的报点阈值比较低，不会出现漏报正例的情况。
+As figure xx shows, we placed a Windows surface tablet and a Morph Sensel force-sensitive touchpad [xx] together to simulate a tablet computer that contains force-sensitive touchscreen. The Sensel Morph is a multi-touch and force-sensitive touchpad, which sense the position and the pressure level of touches. The Sensel Morph contains 185 x 105 sensor elements ("sensels") at a 1.25mm pitch. Each contact can sense approximately 30000 levels, ranged from 5g to 5kg. The upper limit of frequency is 125Hz (8ms latency), while we slowed it down to 50Hz to fetch stable data. The Sensel Morph provides capacitive images and touchpoint information including position, timestamp, touch area, pressure level and shape. The recognition of touchpoint is sensitive that almost every contacts are reported as touchpoints, so in this paper, we identified unintentional touches among reported touchpoints, while did not consider missing touches by the Morph Sensel.
 
-Morph Sensel的长和宽分别是xx厘米，触摸板上展示Qwerty布局的贴纸的长度与压力板相贴合（也是xx厘米），高度为xx厘米。这一Qwerty布局的26键位置比15寸的MacBook的Qwerty键盘略小，为xx.x\%的等比例缩放。由于软键盘的布局是多种多样的，在这份工作中，我们不会将键盘布局相关的先验知识作为防误触算法的特征值。
+%由于目前在商业上还没有具备压力感知能力的平板电脑（或是压力信息不灵敏[xx]），我们拼接了Morph Sensel压敏触摸板和Windows Surface平板电脑来模拟未来可能普及的压敏平板电脑（如图xx所示）。Morph Sensel是一个支持多点触摸的压敏触控板，可以感知触摸的位置和力度，185 x 105 sensor elements ("sensels") at a 1.25mm pitch，5g - 5kg sensing range per touch，Each contact can sense approximately 30,000 levels。Extremely Fast：High Speed Mode: 500 Hz (2 ms latency). morph sensel触摸板在提供电容屏图像的同时，还会提供报点信息，报点十分敏感，几乎所有的contact都会视为一次报点，因此在这份工作中，我们仅分析sensel的报点中哪些是误触，而不考虑morph sensel本身漏报的情况。
 
-电脑设置，运行速度-->程序运行帧率是稳定的50FPS。
+The sensing area of the Morph Sensel is 240mm x 138mm. We used highlighter pen to draw a Qwerty layout on the touchpad as shown in figure xx. The width of the sensing area (240mm) is a little shorter than the Qwerty layout on a 15 inches MacBook (270mm). 
+
+传感区域的大小是240mm*138mm，我们在传感区域中央用记号笔画上了Qwerty布局，用来提示用户每个按键所在的位置。Morph Sensel的传感区域比15寸MacBook上的键盘（xx-mm*xx-mm）小一些，为了能在触摸板上画上Qwerty布局，而不对用户的打字行为造成太大的影响，如图xx所示，我们维持了MacBook键盘上每个按键的大小，并去除了本次实验中不会用到的符号键（如中括号和分号）。由于软键盘的布局可以多种多样，而我们希望做一个应用范围更广的防误触算法，因此我们不会将键盘布局作为先验知识应用在防误触算法当中。
+
+我们使用的平板电脑是Windows surface xx，xx核，cpu，程序运行的帧率稳定在50FPS，我们采集到的报点数据也是50FPS。
 
 \subsection{Result}
 
