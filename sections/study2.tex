@@ -1,49 +1,63 @@
-\section{Study 2: User Behavior on TypeBoard}
+\section{Study 2: User Behavior on the TypeBoard}
 
-实验二的目的是研究用户在防误触键盘上的打字行为，并根据分析此行为优化触屏键盘上的防误触算法。在实验一之后，我们已经得到了初版的TypeBoard算法，在本实验中，我们采集了用户在TypeBoard防误触触屏上的打字数据。实验共采集了5组*4人=20人的数据，在采集完每4名被试之后，我们都会利用新的数据去优化TypeBoard，并在之后的实验中使用优化后的TypeBoard，这样做的目的是迭代地逼近鲁棒的防误触算法及其上的用户行为模型。
+In this study, we obtained users' typing data on the TypeBoard, which is a touchscreen keyboard with unintentional touch rejection. The motivation was to investigate users' typing behavior, based on which we can improve the identification of unintentional touch. We have implemented a TypeBoard in the last study. In this study, we recruited 16 participants and divided them into four groups equally. The first group of participants typed on the existing TypeBoard. After each group finished the experiment, we used the data to improve the TypeBoard. The following participants typed on the improved TypeBoard. That is, we explored the user behavior and improve the method through an iterative process.
+
+%在本实验中，我们迭代地采集了用户在防误触触屏键盘上的打字数据。动机是调研用户在防误触触屏键盘上的打字行为，基于此我们可以优化防触屏键盘上的防误触算法。在实验一中，我们已经得到了一个naive版本的TypeBoard（防误触键盘）。在本实验中，我们邀请5组*4人=20人在TypeBoard上打字，在每采集完4名被试的数据之后，我们都会利用新的数据去优化TypeBoard，并让后续的用户在优化后的TypeBoard上进行实验。这样做的目的是通过迭代的方法来逼近鲁棒的防误触算法，和探索其上的用户行为。
 
 \subsection{Participants}
 
-我们从本地的校园中邀请了20名用户参与实验，他们的年龄从xx岁到xx岁不等，平均数是xx，标准差是xx，其中有xx名女性。所有的用户都是右撇子，所有用户有超过xx年的手机文本输入经历，xx名用户常用平板电脑进行文本输入。这些用户没有参与过实验一。如上面所说，我们将用户分成了五组，为了保证五组用户的平衡性，我们通过程序随机模拟了10000次分组，最终确定了平均年龄最相近的分组方式，这五组的年龄平均数分别为xx,xx,xx,xx,xx，每组分别有xx,xx,xx,xx,xx名女性。
+We recruited 20 participants from the local campus (aged from xx to xx, M = xx.xx, SD = xx.xx, xx femakes). All the participants were righted handed and did not took part in the first study. They have used software keyboards on smartphones for not less than xx years. xx of the 20 participants were familiar with software keyboards on tablets.
+
+We divide the participants into five groups. Each group had four people. The five groups were well-matched in age. As a previous work did \cite{2020-QwertyRing},  we ran a program to divide the participants randomly for 1000 times and picked the five groups of which the average ages were the closest (M = xx.x, xx.x, xx.x, xx.x, xx.x, SD = xx.x, xx.x, xx.x, xx.x, xx.x). The first group of participants typed on the naive TypeBoard, while the following groups used continually improved keyboards.
+
+%我们从本地的校园中邀请了20名用户参与实验，他们的年龄从xx岁到xx岁不等，平均数是xx，标准差是xx，其中有xx名女性。所有的用户都是右撇子，所有用户有超过xx年的手机文本输入经历，xx名用户常用平板电脑进行文本输入。这些用户没有参与过实验一。如上面所说，我们将用户分成了五组，为了保证五组用户的平衡性，我们通过程序随机模拟了10000次分组，最终确定了平均年龄最相近的分组方式，这五组的年龄平均数分别为xx,xx,xx,xx,xx，每组分别有xx,xx,xx,xx,xx名女性。
 
 \subsection{Design and Procedure}
 
-在实验之前有一个训练阶段，用户有五分钟时间通过誊写例句熟悉该键盘，例句随机选自xx例句库[xx]。由于所有用户都没有过使用防误触触屏键盘的体验，在用户的试用过程中，实验者提醒用户该键盘有防误触的功能，平时可以把手休息在触屏上。这不是强制的要求，具体行为由用户根据具体的任务和自己的喜好决定。
+As figure xx shows, the experimental devices were the same as those in study one, including a Windows surface tablet and a Morph Sensel force-sensitive touchpad. The working frequency was 50 FPS. There were four sessions of text entry tasks, which also reminded the same as study one. The differences in study two are as follows. First, participants could actually enter words by typing on the touchpad. Second, the system supported unintentional touch rejection. Intentional touches would trigger keystrokes and audio feedback, while unintentional touches were ignored.
+%正式实验分为四个session，分别收集了用户在填写个人信息、描述个人爱好、模拟开卷考试和看图写话这四个任务下的打字数据，我们通过拉丁方来平衡每个用户做这四个任务的顺序。如图xx所示展示了实验二的实验设置，桌面上的实验设备包含morph-sensel压力触摸板、鼠标、显示器和耳机。在本实验中，用户同样通过填写word文档的方法来完成四个文本输入任务（图xx）。和实验一不一样的是，用户在本实验中真的能够通过TypeBoard来键入字母，且打字的过程中能够听到“啪啪”的声音反馈。
 
-正式实验分为四个session，分别收集了用户在填写个人信息、描述个人爱好、模拟开卷考试和看图写话这四个任务下的打字数据，我们通过拉丁方来平衡每个用户做这四个任务的顺序。如图xx所示展示了实验二的实验设置，桌面上的实验设备包含morph-sensel压力触摸板、鼠标、显示器和耳机。在本实验中，用户同样通过填写word文档的方法来完成四个文本输入任务（图xx）。和实验一不一样的是，用户在本实验中真的能够通过TypeBoard来键入字母，且打字的过程中能够听到“啪啪”的声音反馈。在极少数情况下，用户会发现一类机器学习总是错判的情况，字母不能正常上屏。举例来说，第x名用户经常在单手五指都休息的情况下，另一只手打字，系统总是漏报。在这种情况下我们鼓励用户维持这种系统会误判的用户行为，并像实验一中一样想象字母已经正确上屏，然后在标注的时候标注出这些错误。
+Before the experiment, participants warmed up by a ten-minute daily writing. Because no participant had experience with typing on a keyboard with unintentional touch rejection, we reminded the participants that they could rest their fingers on the keyboard while thinking. The resting behavior was not mandatory. Participants could decide to rest or not according to the task and their preference.
 
-在每个session结束后，用户通过交互式程序标注刚刚完成的session的报点。和实验一的标注过程相同，所有的报点一开始都被标为红色（误触），用户需要将每一个有意的点击标注成绿色（正例）。实验者在一旁观察标注的过程，并通过另一台电脑事先得知机器学习的结果，当发现机器学习结果和用户人工标注不符的情况时，实验者会人工分析其中的原因，如果实验者不能通过独立思考弄明白其中的原因，或者他认为被试标注出错时，他会立即和被试进行讨论。
+%在实验之前有一个训练阶段，用户有五分钟时间通过誊写例句熟悉该键盘，例句随机选自xx例句库[xx]。由于所有用户都没有过使用防误触触屏键盘的体验，在用户的试用过程中，实验者提醒用户该键盘有防误触的功能，平时可以把手休息在触屏上。这不是强制的要求，具体行为由用户根据具体的任务和自己的喜好决定。
 
-在本实验中，用户完成输入任务的总时间大约为30分钟，比实验一稍长，这是因为实验二的输入过程涉及键入字母和删改操作；用户完成标注的时间大约为45分钟；每两个session之间用户休息5分钟时间以避免疲劳，实验总时长为90分钟。
+In rare cases, the system repeatedly ignored participants' intentional touches. For example, a participant (px) usually typed with one hand while the other hand rested on the touchsreen. This behavior was not observed in study one, so the system could not identify it correctly. Considering that these fail cases were useful to improve the unintentional rejection algorithm, we encouraged the participant to keep their behaviors when the system gave an incorrect response. In this situation, participants needed to imagine that the desired words were corrected entered.
 
-由于用户的打字行为和触屏防误触能力会互相影响，我们将20名被试平均分为五组，在每组被试完成实验后，我们都会更新数据集和添加必要的特征向量，以训练新的防误触算法，迭代地增强触屏键盘的防误触能力。这就是说，我们期望每组用户所用到的TypeBoard键盘的防误触能力都会更强，也期望每组用户的打字行为更接近防误触键盘上的自然输入行为。
+%在极少数情况下，用户会发现一类机器学习总是错判的情况，字母不能正常上屏。举例来说，第x名用户经常在单手五指都休息的情况下，另一只手打字，系统总是漏报。在这种情况下我们鼓励用户维持这种系统会误判的用户行为，并像实验一中一样想象字母已经正确上屏，然后在标注的时候标注出这些错误。
 
-\subsection{Apparatus}
+After finishing each session, participants labeled the data through an interactive program, which was introduced in study one. During the labeling phrase, we compared participants' labels with the results predicted by the algorithm. When the two results were different, we immediately recorded and analyzed the data point. If the experimenter could not figure out why the results were different, he would discuss with the participant.
+In average, participants spent 10 minutes to finish the text entry tasks and spent one hour to label the data. The completion time was longer than that in study one, because participants needed more time to enter and correct words in study two. Participants rested for five minute between two sessions to avoid fatigue. The study was generally completed within 90 minutes.
 
-实验二的设备与实验一相比，只多出了一个普通的有线耳机，用于提供打字时的声音反馈。实验二所运行的程序包含两个功能，一是区分打字事件和误触，二是将打字事件触点位置上的字母上屏，其运行速度为50FPS。
+%在每个session结束后，用户通过交互式程序标注刚刚完成的session的报点。和实验一的标注过程相同，所有的报点一开始都被标为红色（误触），用户需要将每一个有意的点击标注成绿色（正例）。实验者在一旁观察标注的过程，并通过另一台电脑事先得知机器学习的结果，当发现机器学习结果和用户人工标注不符的情况时，实验者会人工分析其中的原因，如果实验者不能通过独立思考弄明白其中的原因，或者他认为被试标注出错时，他会立即和被试进行讨论。
 
-\subsection{Result}
+%在本实验中，用户完成输入任务的总时间大约为30分钟，比实验一稍长，这是因为实验二的输入过程涉及键入字母和删改操作；用户完成标注的时间大约为45分钟；每两个session之间用户休息5分钟时间以避免疲劳，实验总时长为90分钟。
 
-在实验的过程中，每五个用户的实验结束之后，我们都会采用新的数据来优化防误触算法，如图xx所示是防误触算法随着完成实验人数的增加的变化，其中每个测试点的数据集包含实验二过程中已经收集到的数据加上实验一的所有数据，评测方法是leave-one-out检测。结果表明，随着实验人数的增加，迭代更新TypeBoard、初版TypeBoard和baseline[xx]的差距在显著拉大，这说明TypeBoard的防误触能力在增强，我们采集到的数据也越来越接近用户在一个完美防误触键盘上的打字行为。
+Because the ability of unintentional touch rejection will affect the user behavior, we used an iterative process to improve TypeBoard, and ensured that the participants were typing on the latest version of TypeBoard. We divide the 16 participant into four groups. The first group of participants complete the experiment on the naive TypeBoard introduced in study one. After each group of participants finish their experiment, we improved the algorithm by updating training data and adding features in model. We expected that the TypeBoard algorithm was getting stronger, while the data we collected was getting closer to the natural behaviors of typing on a perfect keyboard.
+
+%由于用户的打字行为和触屏防误触能力会互相影响，我们将20名被试平均分为五组，在每组被试完成实验后，我们都会更新数据集和添加必要的特征向量，以训练新的防误触算法，迭代地增强触屏键盘的防误触能力。这就是说，我们期望每组用户所用到的TypeBoard键盘的防误触能力都会更强，也期望每组用户的打字行为更接近防误触键盘上的自然输入行为。
+
+\subsection{Result: Recognition}
+
+在实验的过程中，每四个用户的实验结束之后，我们都会采用新的数据来优化防误触算法，如图xx所示是防误触算法随着完成实验人数的增加的变化，其中每个测试点的数据集包含实验二过程中已经收集到的数据加上实验一的所有数据，评测方法是leave-one-out检测。结果表明，随着实验人数的增加，迭代更新TypeBoard和初版TypeBoard的差距在显著拉大。这说明TypeBoard的防误触能力在增强，我们采集到的数据也越来越接近用户在一个完美防误触键盘上的打字行为。
 
 【图：baseline、初版TypeBoard、迭代更新TypeBoard随着实验人数增加，准确率的变化】
 
-在20名用户的实验都完成了之后，抛去用户无法区分的xx个数据点，我们共收集了xx个有效的数据点。在有效的数据中，正例（打字）的比例是xx.x\%，负例（误触）的比例是xx.x\%。我们总结了一些实验一的机器学习算法不能很好处理的fail-cases（如表xx左侧所示），我们针对这些情况专门设计了相应的特征组（如表xx右侧所示）。最终，我们的算法在实验二的数据集上达到了xx.x\%的准确率，而baseline的准确率仅为xx.x\%，TypeBoard和baseline的差距与实验一相比显著增大。
+在16名用户的实验都完成了之后，抛去用户无法区分的xx个数据点，我们共收集了xx个有效的数据点。在经过了和实验一相同的label结果确认之后，数据集中正例（打字）的比例是xx.x\%，负例（误触）的比例是xx.x\%。如表格xx所示，我们总结了一些初版模型fail cases，我们针对这些情况专门设计了额外的特征组。至此，我们完成了TypeBoard的最终设计，特征向量是xx维，我们的算法在实验二的数据集上达到了xx.x\%的准确率。
 
 【表：实验二新总结出来的fail-cases和应对方案】
 
-这一结果说明：第一，用户在防误触键盘上打字时，存在更多、更难分辨的误触点，对防误触算法带来更多的挑战；第二，在该用户行为下，结合压力信息的机器学习方法能够鲁棒地防误触，而baseline-基于电容屏信息和阈值地方法变得不可用。
+上述是在高精度的force-sensitive touchscreen keyboard上的识别结果，其准确率较高。然而，现实中大多数触摸屏设备还没有压力传感器，有的设备（如MacBook的force touch trackpad）则在四个角上有压力传感器。为了给防误触触屏提供硬件设计指导，我们对比了我们的算法在三种情况下识别准确率，三种情况分别是：（1）capactive-only：只有电容信号；我们将算法中涉及到压力信号的特征维度都阉割掉来训练机器学习模型。（2）four-force-sensor：四个角上有压力传感器，根据实验采集到的高精度压力信号，我们可以根据基础的物理知识模拟四角压力传感器的数据。我们在情况1的基础上，直接加上四个角压力信号的时域特征。（3）force-enabled：既有电容信号，又有压力信号，这也就是我们论文中所述的配置。
 
-用户的主观评分和采访。评分包括主观的好评率over 任务，主观的休息手指频率over 任务。
+【图：三种硬件设置下算法的识别准确率】
 
-\subsection{Discussion}
+如上图所示是这三种情况下算法的识别准确率。值得注意的是，四个角上有传感器的识别准确率为xx.xx\%，这说明，四个角上安装传感器是一个准确率不错、且目前为止容易实现、成本较低的实现方法。
 
-误触点的构成：休息、手掌误触、输入时误触的比例。
+\subsection{Result: User Behavior}
 
-实验任务显著影响了用户行为。这说明了考虑不同实验任务的必要性。
+在本实验的结果中，我们更多地关注在用户的行为上。
 
-TypeBoard算法在不同延迟下的识别准确率问题。
+（1）误触点的构成：休息、手掌误触、输入时误触的比例。
 
-TypeBoard算法在不同数据组合下的准确率问题。motivation，比如有的设备没有压力信息，能否正确区分误触与否？
+（2）实验任务显著影响了用户行为。这说明了考虑不同实验任务的必要性。
 
-技术实现和用户行为之间的互相影响，及应对方案。可以列举很多相关工作进行讨论，比如其它防误触算法、文本输入相关算法。
+（3）技术实现和用户行为之间的互相影响，及应对方案。可以列举很多相关工作进行讨论，比如其它防误触算法、文本输入相关算法。

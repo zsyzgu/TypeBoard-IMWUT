@@ -37,7 +37,7 @@ Before the experiment started, the participant had five minutes to familiarize h
 
 %在实验开始前，用户有5分钟的时间自由地在本系统中熟悉实验的任务和要求，在热身的过程中，实验者让用户注意两点：第一，本实验的键盘不会提供任何反馈，用户不能键入字母，而是想象自己键入了字母。由于用户的母语是中文，在输入的过程中会涉及到选词，用户只需想象想要的单词总是在输入法候选词的第一位。第二，用户需要想象该键盘可以完美地防误触，并根据这一条件调整自己的输入行为，比如，在思考问题的时候可以将手指休息在键盘上。这种行为调整不是强制性的，用户可以根据自己的实际情况作出选择。
 
-After finishing each session of task, the participant labeled the data through an interactive program. The program showed the capacitive images of touchpad and the screencast of tablet at the same time. As figure xx shows, there were some red points on the capacitive images that showed the touchpoints reported by the touchpad. Participants labeled the intended touches as green points. Because participants got context information from the screencast, they were able to identify most intentional touches. If participants were not sure, they could label the touchpoint as a blue point to remove the data. In average, participants spent 15 minutes to finish the text entry tasks and spent 45 minutes to label the data. Participants rested for five minutes between two sessions to avoid fatigue. The study was generally completed within 80 minutes.
+After finishing each session of task, the participant labeled the data through an interactive program. The program showed the capacitive images of touchpad and the screencast of tablet at the same time. As figure xx shows, there were some red points on the capacitive images that showed the touchpoints reported by the touchpad. Participants labeled the intended touches as green points. Because participants got context information from the screencast, they were able to identify most intentional touches. If participants were not sure, they could label the touchpoint as a blue point to remove the data. In average, participants spent five minutes to finish the text entry tasks and spent 45 minutes to label the data. Participants rested for five minutes between two sessions to avoid fatigue. The study was generally completed within 70 minutes.
 
 %在每个session结束后，用户需要通过一个交互式程序来标注刚刚所进行session的报点数据，该程序同时展示了实验过程中的录屏视频和压力板图像，用户需要结合录屏提供的上下文信息，标注压力板图像中的报点。如图xx所示，我们在平板电脑上外接了鼠标来提高用户的标注效率。压力图像中所包含的报点初始默认值为负例（误触），用红色点表示。用户若认为一个报点是正例（打字事件），则需要用鼠标左键将该点标为绿色；用户可以通过鼠标右键将报点重新标为红色；用户若不清楚该报点是正例还是负例，则需要用鼠标中键将该点标为蓝色，表示剔除出数据集。本实验的输入任务部分，四个session加起来大约需要15分钟，标注过程大约45分钟，每两个session之间休息5分钟时间来避免疲劳，实验总时长为80分钟。
 
@@ -47,34 +47,94 @@ As figure xx shows, we placed a Windows surface tablet and a Morph Sensel force-
 
 %由于目前在商业上还没有具备压力感知能力的平板电脑（或是压力信息不灵敏[xx]），我们拼接了Morph Sensel压敏触摸板和Windows Surface平板电脑来模拟未来可能普及的压敏平板电脑（如图xx所示）。Morph Sensel是一个支持多点触摸的压敏触控板，可以感知触摸的位置和力度，185 x 105 sensor elements ("sensels") at a 1.25mm pitch，5g - 5kg sensing range per touch，Each contact can sense approximately 30,000 levels。Extremely Fast：High Speed Mode: 500 Hz (2 ms latency). morph sensel触摸板在提供电容屏图像的同时，还会提供报点信息，报点十分敏感，几乎所有的contact都会视为一次报点，因此在这份工作中，我们仅分析sensel的报点中哪些是误触，而不考虑morph sensel本身漏报的情况。
 
-The sensing area of the Morph Sensel is 240mm x 138mm. We used highlighter pen to draw a Qwerty layout on the touchpad as shown in figure xx. The width of the sensing area (240mm) is a little shorter than the Qwerty layout on a 15 inches MacBook (270mm). 
+【图：实验设置，特别是平板电脑+压力触控板=压敏平板电脑】
 
-传感区域的大小是240mm*138mm，我们在传感区域中央用记号笔画上了Qwerty布局，用来提示用户每个按键所在的位置。Morph Sensel的传感区域比15寸MacBook上的键盘（xx-mm*xx-mm）小一些，为了能在触摸板上画上Qwerty布局，而不对用户的打字行为造成太大的影响，如图xx所示，我们维持了MacBook键盘上每个按键的大小，并去除了本次实验中不会用到的符号键（如中括号和分号）。由于软键盘的布局可以多种多样，而我们希望做一个应用范围更广的防误触算法，因此我们不会将键盘布局作为先验知识应用在防误触算法当中。
+The size of sensing area on the Morph Sensel is 240mm x 138mm. We used highlighter pen to draw a Qwerty layout on the touchpad as shown in figure xx. The width of the Morph Sensel (240mm) is a little shorter than the width of the keyboard on a 15 inches MacBook (270mm). We removed some keys that are less frequently used such as square brackets and semicolon, so that the Qwerty layout could be placed in the Morph Sensel, while the size of each key reminded the same as Macbook. Because the Qwerty layout is changeable in software keyboard, we did not used the layout as prior knowledge in the recognition of unintentional touch.
 
-我们使用的平板电脑是Windows surface xx，xx核，cpu，程序运行的帧率稳定在50FPS，我们采集到的报点数据也是50FPS。
+%传感区域的大小是240mm*138mm，我们在传感区域中央用记号笔画上了Qwerty布局，用来提示用户每个按键所在的位置。Morph Sensel的传感区域比15寸MacBook上的键盘（xx-mm*xx-mm）小一些，为了能在触摸板上画上Qwerty布局，而不对用户的打字行为造成太大的影响，如图xx所示，我们维持了MacBook键盘上每个按键的大小，并去除了本次实验中不会用到的符号键（如中括号和分号）。由于软键盘的布局可以多种多样，而我们希望做一个应用范围更广的防误触算法，因此我们不会将键盘布局作为先验知识应用在防误触算法当中。
+
+The tablet we used in the experiment was Windows surface xx, with ixx Intel Core Processor, xx-core. The data collecting program ran on the tablet at a stable frequency of 50 FPS.
 
 \subsection{Result}
 
-原始数据共包含xx个数据点，其中用户无法区分的点的占比为xx.x\%，刨去这些数据点之后正例（打字事件）的比例是xx.x\%，负例（误触点）的比例是xx.x\%。我们先使用简单的机器学习方法对数据进行验证，当机器学习结果和用户标注结果有大量不同时，我们会将用户召回，让她重新标注这些分类错误的数据，其中，有xx.x\%的数据的确是用户标错了（有的用户对误触的理解出现了偏差），修正了用户标错的数据之后，实验共采集了xx个数据点，其中xx\%是误差。
+The dataset contains 12659 touches, excluding the ambiguous touches (0.18\%) in the labeling. 67.5\% of the data were positive samples (intentional touches), while 32.5\% were negative samples (unintentional touches). Because some participants misunderstood the concept of "unintentional touches", there might be mislabeled data points. We trained a simple machine learning model (version 1) to process the data. If there were a large between labels and predicting results, we asked the participants to relabel the suspicious data points.
 
-在该数据集上，简单的机器学习方法的错误率为xx.x\%，其中xx.x\%的误触和xx.x\%的漏报。我们对这些简单的机器学习不能正确分类的数据点进行了人工观察，总结出来这些无触点的分类如下表所示。
+\subsubsection{Model version 1: naive model and data processing}
 
-【表格：简单机器学习容易分类出错的误触点类型，简单的机器学习方法是采取报点后3~5帧的数据作为数据集，采用压力、面积和压强的时序特征和SVM训练的模型】
+We first trained a simple and straightforward model (version 1) for data processing. We sampled the first five frames of each touch. If the duration of a touch is shorter than five frames, the whole touch was regarded as a sample. As table xx (V1) shows, we extracted features from the samples as follows: for the contact area, ellipticity, displacement, force and intensity over frames, we calculated their temporal feature including maximum, minimum, mean, skewness and kurtosis. Then, we concatenated these values to obtain a feature of 25 dimensions and trained an SVM binary classifier. Positive and negative samples were balanced in weight.
 
-从表格xx能够看出来，大多数误触点都是有明显的特点的，我们针对几乎每种错判，都设计了专门的特征向量，用于机器学习。只有表中加粗的两类错判很难找到特征，这一类数据的占比为xx.x\%，用户仅能通过任务的上下文来标注，而系统不可能准确知道用户想要输入的文字，因此我们认为这一部分数据的分类问题是不可解的。因此在该数据集上，人工判断的准确率不超过xx.x\%，这也是我们给自己算法定的目标。
+%如表格xx所示，我们首先开发了一个简单、直观的机器学习方法（version-1）。我们采样每个报点后前5帧（100ms）的数据作为样本，如果一次点击事件的持续时间不足五帧，则将整个点击事件作为样本。然后，我们通过以下方法来提取样本的特征：对于报点面积、椭圆度、位移、压力和压强这五个数值，分别计算它们在五帧中的时序特征（最大值、最小值、平均值、偏度和峰度），排列成一个25维的特征向量，最后使用SVM二分类器进行分类，训练时平衡了正负样本的权重，也对每一维特征分别先进行归一化。
 
-\subsection{Recognition}
+We used this model to simulate the dataset and observed. We found that some participants misunderstood the concept of "unintentional touches", for example, regarding wrong inputs as unintentional touches. We asked the participants to relabel the suspicious data points through e-mail. Finally, we had xx data points, including xx.x\% positive samples and xx.x\% negative samples.
 
-训练集是报点后4到6帧的数据，测试集是报点后第5帧的数据，如果报点提前结束，则选取结束那一帧的数据。使用第5帧作为测试集的原因是，模拟发现，5帧的延迟能较好地平衡识别准确率和识别延迟，我们会在稍后讨论识别延迟和准确率之间的tradeoff。使用一个时间窗口4~6帧的数据作为训练集的原因是，将数据对齐的问题交给机器学习来解决，通俗地讲，某次点击中第五帧的数据，可能和其它同类点击中第4、第5或第6帧的数据比较相似。
+%我们用这个简单的机器学习方法来预测实验一中采集的数据。我们发现，有的用户在标注的时候对误触的理解出现了偏差，例如将打错字母标注成无意触摸，对于这种实验者认为有可疑的数据点，我们都通过邮件的方式请当事人用户重新标注。在所有数据都被检查无误之后，我们共有xx个数据点，其中正例占xx.x\%，负例占xx.x\%。至此，我们认为数据集的标注准确无误。
 
-我们采用支持向量机来实现二分类模型，特征向量如表格xx中间的一列所示，每一段特征向量独立的预测准确率也公布在表格中了。将所有特征结合起来的准确率为xx.x\%。
+Leave one out cross-validation shows that the accuracy of model version 1 was 96.86\% (SD=4.17\%). For comparison, if we did not have the force signal (i.e., the regular touchscreen devices), the accuracy would reduce to 92.30\% (SD=4.88\%). The result shows that the force signal is important for unintentional touch rejection (F,p).
 
-最终，Leave-one-out准确率达到了xx.x\%，相比之下，baseline[xx]的准确率仅为xx.x\%。这一结果说明两点：首先，用户在想象中能防误触的键盘上打字时，会引发很多难以仅通过阈值方法区分有意与否的触摸点，对防误触算法带来挑战；第二，结合压力触摸屏上众多的传感信息、结合时间、空间信息，能够大幅度提高触屏上误触点的识别。
+%留一法显示版本1的模型对误触的识别准确率达到96.86\%，作为对比，如果我们不利用压力信息（版本0），准确率仅为92.30\%。这一结果说明，压力信号在tablet键盘防误触方面起了非常重要的作用（F,p）。
+
+\begin{figure}[!tbh]
+	\includegraphics[width=1.0\linewidth]{figures/features.png}
+	\centering
+	\caption{The features we fed into the SVM model and the accuracy among model versions.}
+	\label{fig:feature1}
+\end{figure}
+
+\subsubsection{Model version 2: filtering out multiple fingers resting}
+
+Observation showed that multiple fingers resting was the most frequent unintentional touches, where users rested more than two fingers on the screen at the same time. There were more than x0\% of multiple finger resting among all unintentional touches. Thus, we add a series of features in the model version 2 to deal with this user behavior. A new criterion was added in the model, namely "the proportion of this touch among all touches". The features in details can be found in table xx (V2). Leave one out cross-validation shows that the accuracy increased to 98.59\%.
+
+% 观察发现，多指同时休息是最常见的误触行为，占所有无意报点总数的x0\%以上。为了解决这个瓶颈问题，我们在模型中新增了一系列表达“本次点击在所有点击中所在的比重”的特征（table xx - V2），这些特征包含本次点击的接触面积、压力和压强占全屏总接触面积、总压力和总压强的比例。对于这三个数值，同样需要计算时域信息，即五帧中的最大值、最小值、平均值、偏度和峰度，共新增15维特征。重新训练得到新的模型（版本2），留一法显示准确率上升至98.59\%。
+
+\subsubsection{Model version 3: understand user behavior and  improve the model}
+
+To understand the user behavior and further improve the model, we analyzed the fail cases of the model version 2. As table xx shows, the error rate of model version 2 was 1.41\%, including xx.x\% false triggering touchpoints and xx.x\% unrecognized touchpoints. We classified the fail cases into 16 categories. We counted their frequencies, analyzed the reasons, and gave possible solutions.
+
+For the fail cases with a white background (xx.x\%) in table xx, the researchers could predict correctly without watching the experiment screencast. That is, the machine should have predicted correctly if it is as smart as a human. For these cases, we proposed features to improve the model. Here are some examples:
+
+%为了进一步提高模型的预测准确率，我们分析了V2版本模型的错例，并推测这些错例是由怎样用户行为导致的。如表格xx所示，有xx.x\%的错例（白色背景部分）是人类（实验者）能够人工分析出正确结果的，我们可以为这些错例设计针对性的特征，从而提高模型的预测准确率。这些错例中比较典型的例子有：
+
+\begin{enumerate}
+	\item{\textbf{EG1):} \emph{Pisiform.} As figure xx.x shows, the pisiform is a small bone found in the proximal row of the wrist (carpus), while the thenar eminence is the group of muscles on the palm at the base of the thumb. Both the posiform and the thenar eminence would contact the touchscreen when a user is typing. However, the touches caused by the posiform is usually heavy and intensive, which is easy to confused with intentional touches. Furtunately, these touches are frequently in the bottom left and the bottom right corners. Thus, the distances to the corners could be good features to reject these unintentional touches.}
+	\item{\textbf{EG2):} \emph{Continuous touches.} When a user continuously typed on the same key (e.g., the delete key), the follow-up touches might be lighter. These touches are lighter than other intentional touches, so they are likely to be recognized as unintentional touches. Adding information of recent touches could help to correct this fail case.}
+	\item{\textbf{EG3):} \emph{One hand-typing.} Some participants typed with one hand, while resting the other hand on the touchsreen. In this situation, the model version 2 might think that all the touches together was "multiple fingers resting", and identified the typing as an unintentional touch. To correct this fail case, we added information of nearby touches, because the typing finger is usually far away from the resting fingers.}
+\end{enumerate}
+
+【图：大鱼际和小鱼际，还有其它需要图解的错例。】
+
+%（1）V2版模型有些时候会把小鱼际的误触判定为有意点击。我们发现，用户的小鱼际误触主要集中在触摸屏的左下角和右下角。因此，我们给模型添加上了一系列"Distance-to-corners"的特征，这样一来，模型将会降低在小鱼际处识别出有意点击的概率。
+%（2）用户在连续点击同一个按键时（比较常见的是删除键），后续的点击可能会变得很轻，使得它的力度看上去更像是一个无意点击，V2版模型不能很好地处理这个问题。因此，我们给模型添加上了一系列"ralationship-to-recent-touches"的特征，这样一来，连续点击即使变得更轻，也能被正确地识别成有意点击。
+%（3）有的用户可能会出现单手打字，另一只手指放在屏幕上休息的行为，这种情况下V2版模型可能认为所有手指都是在参与多指休息。因此，我们给模型添加上了一系列"ralationship-to-recent-touches"的特征，这样一来，如果本次点击距离同屏的其它点击距离较远，则可解释为one-hand-typing行为，从而被正确识别为有意点击。
+
+However, there are xx.x\% of the fail cases (with a gray background in table xx), that humans (the researchers) could not predict without watching the experiment screencast. We deemed that these fail cases were inevitable, because the machine can not know what the user is going to enter in advanced. Here are some examples. First, sometimes the participants rested one finger on the touchscreen heavily, which is indistinguishable with a intentional touch. Second, some participants performed a very light touch during entering a word, which is similar to an unintentional touch. That is, the accuracy of the model has an certain upper limit (roughly xx.x\% in this dataset), while our goal is to approach it.
+
+%然而，有xx.x\%的数据（灰色背景部分），是人类也不能在不看上下文（实验录屏）的情况下分析出正确结果的，我们认为这部分的误触和漏报是不可避免的。这一类错例的典型例子有：（1）一只手指休息在键盘上，且力量很大，这种行为和用户打单词的第一个字母的行为非常相似（2）打字过程中出现一次很轻的有意点击，这种行为和打字过程中的误触非常类似。我们认为系统无法避免这种误触，也就是说，即使是人工判断每次点击是否有意，错误率也不低于xx.x\%（V2错误率 * V2错例中人类无法分辨的部分）。
+
+According to the user behaviors summarized in table xx, we added two criteria in the model training. The first criterion is the location of touch, including the minimum distances to the edges and to the corners. The model did not leverage the priori knowledge of the keyboard layout, because the layout of a software keyboard is changeable, while we wanted a universal model. The second criterion is the relationships between the current touch and the recent/nearby touches.The features in details can be found in the table. The model version 3 used all the features listed in table xx. We concentrated these features to form a vector of 100 dimensions and trained an SVM binary classifier. Leave one out cross-validation showed that the accuracy was 99.07\%. The error rate was 0.93\%, including xx.x\% false triggering and xx.x\% unrecognized touchpoints.
+
+We used previous work as baseline \cite{2013-TapBoard}, where every touches that last for more than 450 ms or move father than 15 mm are identified as unintentional touches. We adjusted the thresholds to xx ms and xx mm so that the baseline performed the best on our dataset. Our result (99.07\%) surpassed the baseline (xx.xx\%). In real use, our system calls the classifier once a touch has lasted for five frames or is released in advanced. The system reports the touchpoint if the prediction result is positive. The delay of our method is 100 ms. For comparison, the baseline can only judge a touch when it is released.
+
+%99.07\%的识别准确率远远超过了先前工作[xx]对打字过程中误触的识别准确率，在我们的数据集下，先前工作所使用的阈值方法（时间<xxms，位移<xx厘米）准确率仅为xx.x\%，即使重新调整阈值使其在我们的数据集下达到最优（时间<xxms，位移<xx厘米），准确率也仅为xx.x\%，因此我们的算法在准确率上成倍地提高了已有工作的水平。In real use, the system calls this classifier once a touch is released or has lasted for five frames, and reports the touchpoint if the prediction is positive. The delay is within 100ms. 延迟问题也是我们的算法对比于baseline的一大改进，相比之下，baseline只能在点击事件抬起时做出判断。
+
+%针对表格xx中总结出来的用户行为，我们在模型中新增了两大类特征，分别是本次点击的坐标(V3)和本次点击与时空临近点击之间的关系(V4)，最终，新模型的预测准确率达到了99.07\%，十分接近人类判断的准确率。至此，我们认为已经得到了实验一数据下的最佳结果。
+
+\begin{figure}[!tbh]
+	\includegraphics[width=1.0\linewidth]{figures/fail_cases.png}
+	\centering
+	\caption{Fail cases of the model version 2. Noticed that the "Fail cases" is the number of fail cases of the model, but not a counting for the user behavior. xxx.}
+	\label{fig:fail_cases}
+\end{figure}
+
+We have three conclusions in this experiments. First, participants were willing to rest their fingers on the touchscreen that can reject unintentional touches in imaginary. Hereby, we proposed a hypothesis to be verified, where users are willing to rest their fingers on a real TypeBoard. Second, the force signal is important for rejecting unintentional touches in the text entry task. Third, most unintentional touches (>99\%) can be identified by spatial-temporal features of the signals on a force-sensitive touchsreen keyboard.
+
+%在本实验中，我们能得到三个基本结论：（1）在想象中可以防误触的键盘上，用户十分乐意将手指休息在触屏上。由此我们提出一个假设：如果实际上存在一个能够极大概率拒绝误触，用户也会乐意将手指休息在触屏上。我们会在后续的实验中验证该假设。（2）压力信息对tablets打字防误触算法的提高是显著的。（3）大部分典型的误触行为都可以根据压力屏上触点的时空特性识别出来，准确率超过99\%。除了以上基本结论外，我们还讨论了下列问题：
 
 \subsection{Discussion}
 
-研究者将初版TypeBoard算法实现成一个可以真正打字的Demo，然后亲身体验。研究者发现，这一版的TypeBoard已经能防止大部分的误触，但是有的行为会导致可复现的误触，比如左手休息、右手打字的情况。其中可能有两方面原因，一是实验一得到的数据量样本数不够多，没有全面覆盖各种各样的误触行为；第二个原因是，用户在真正可以防误触的键盘上打字时，其行为可能和实验一所采集到的行为有差异。因此，我们有必要设计实验二，来调查用户在（有反馈的）防误触触屏键盘上的打字规律。
+\subsubsection{Why sample five frames in each touch?} There is a trade-off between the amount of sampling frames and the accuracy. The more data we sample in each touch, the more accuracy the prediction is. However, a long sampling window means a large delay, which affects the user experience. We needed to strike a balance. Five frames of sampling results in an acceptable prediction accuracy (99.07\%), meanwhile the delay of 100ms is not perceivable in the touching task [xx].
 
-在用户行为的分析方面，有许多值得讨论的地方， 比如误触点的构成（休息、手掌误触、输入间误触）、不同实验任务对用户行为的影响、不同识别延迟对识别准确率的影响等等。但由于实验一采集到的数据仅代表“用户在想象中防误触键盘上的行为”，不如实验二中“用户在防误触键盘上的行为”有价值，因此我们只是通过表格的形式展示了实验一中这些问题的结果，而更多的讨论会在实验二中展开。
+%为什么选取报点后5帧的数据？首先做出判断的时间和准确率是tradeoff，延迟越大，机器学习的准确率就越高，但同时用户体验受到延迟的影响就越大。为了找到一个平衡点，我们分析了延迟为3帧~7帧的情况，结果如图xx所示，xxx。考虑到用户在点击时能感知到100ms的延迟[xx]，我们选取了5帧（100ms）作为算法的判定时机。
 
-相关讨论的结果，误触点的构成，不同任务对用户行为的影响，不同识别延迟对识别准确率的影响。
+\subsubsection{What we found about user behavior?} Here are some conclusions. First, the unintentional touches mainly contains three categories, including multiple fingers resting (xx.x\%), palm touches (xx.x\%) and mistaken touches during input (xx.x\%). Second, the text entry task has significant effect on the amount of unintentional touches (F, p). Bonferroni-corrected post-hoc tests showed significant differences between the following task pairs: xx-xx (p<), xx-xx (p<), and xx-xx (p<). Thus, we suggest that studies of unintentional touch should consider the variety of task. We will discuss the user behavior in details in the next study, because it is more meaningful to analyze the user behavior on a real TypeBoard.
+
+%用户行为有什么规律？在这里，我们直接给出几个结论：（1）误触点主要由三部分构成，分别是多指休息（占xx.x\%），手掌误触（占xx.x\%）和输入间误触（xx.x\%），还有其它情况如用户主观打错没有纳入统计。（2）不同任务对用户无意点击数量有显著影响，其中有差异的任务对有xx，这说明，相关工作中讨论不分任务地讨论误触问题是存在问题的。我们不对以上规律作展开讨论，因为实验一采集的是用户在想象中的防误触键盘上的打字数据，该数据的代表性不强。在下一个实验当中，我们将会采集用户在model-version-4上的打字行为，迭代式地继续改进误触识别算法，并更加详细地探讨用户的行为。
