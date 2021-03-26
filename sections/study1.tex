@@ -12,6 +12,8 @@ We recruited 16 participants from the campus (aged from xx to xx, M = xx.xx, SD 
 
 Figure xx illustrate the experimental setting. There was a Morph Sensel [xx] force-sensitive touchpad on the desk. We placed a windows surface tablet on the touchpad, covering less than half of the pad. We drew a QWERTY layout on the touchpad using highlighter pens. This combination of touchpad and table took place of the force-sensitive touchscreen, which is expected to be commercialized in the future. Participants filled in a Microsoft Word document to complete the experimental tasks. They touched on the tablet for pointing, and typed on the touchpad to "enter words". The system recorded every touches and the screencast during the experiment.
 
+【图：实验一的实验设置】
+
 %图xx展示了实验的设置，桌子上放着一块morph-sensel压力触摸板，在板子的上半部分叠放了一个windows surface，我们用这个组合来模拟未来可以支持压力输入的平板电脑。用户可以根据自己的需求调整椅子的高度、压力触摸板和显示器的位置。压力触摸板上用荧光笔画上了26键Qwerty键盘布局，用于提示用户每个按键的位置。用户在这个系统中通过填写word文档的方式来完成文本输入任务，系统会记录用户每次触摸的信息，以及给实验过程录屏。
 
 The experiment included four sessions of text entry tasks: (1) filling in personal information, (2) describing personal tastes, (3) open-book examination, and (4) picture writing. We counterbalanced the order of the four tasks using a balanced latin square. We did not include transcription as a task as many other studies of text entry do [xx,xx,xx], because our pilot study showed that participants seldom rested their fingers on the touchpad in a transcription task, resulting in low efficiency of obtaining unintentional touches. The details of the four tasks are as follows:
@@ -80,6 +82,8 @@ Leave one out cross-validation shows that the accuracy of model version 1 was 96
 	\label{fig:feature1}
 \end{figure}
 
+【表格：我们的机器学习算法中特征向量的构成】
+
 \subsubsection{Model version 2: filtering out multiple fingers resting}
 
 Observation showed that multiple fingers resting was the most frequent unintentional touches, where users rested more than two fingers on the screen at the same time. There were more than x0\% of multiple finger resting among all unintentional touches. Thus, we add a series of features in the model version 2 to deal with this user behavior. A new criterion was added in the model, namely "the proportion of this touch among all touches". The features in details can be found in table xx (V2). Leave one out cross-validation shows that the accuracy increased to 98.59\%.
@@ -95,12 +99,17 @@ For the fail cases with a white background (xx.x\%) in table xx, the researchers
 %为了进一步提高模型的预测准确率，我们分析了V2版本模型的错例，并推测这些错例是由怎样用户行为导致的。如表格xx所示，有xx.x\%的错例（白色背景部分）是人类（实验者）能够人工分析出正确结果的，我们可以为这些错例设计针对性的特征，从而提高模型的预测准确率。这些错例中比较典型的例子有：
 
 \begin{enumerate}
-	\item{\textbf{EG1):} \emph{Pisiform.} As figure xx.x shows, the pisiform is a small bone found in the proximal row of the wrist (carpus), while the thenar eminence is the group of muscles on the palm at the base of the thumb. Both the posiform and the thenar eminence would contact the touchscreen when a user is typing. However, the touches caused by the posiform is usually heavy and intensive, which is easy to confused with intentional touches. Furtunately, these touches are frequently in the bottom left and the bottom right corners. Thus, the distances to the corners could be good features to reject these unintentional touches.}
-	\item{\textbf{EG2):} \emph{Continuous touches.} When a user continuously typed on the same key (e.g., the delete key), the follow-up touches might be lighter. These touches are lighter than other intentional touches, so they are likely to be recognized as unintentional touches. Adding information of recent touches could help to correct this fail case.}
-	\item{\textbf{EG3):} \emph{One hand-typing.} Some participants typed with one hand, while resting the other hand on the touchsreen. In this situation, the model version 2 might think that all the touches together was "multiple fingers resting", and identified the typing as an unintentional touch. To correct this fail case, we added information of nearby touches, because the typing finger is usually far away from the resting fingers.}
+	\item{\textbf{EG1):} \emph{Hypothenar eminence.} As figure xx.x shows, the hypothenar eminence refers to a group of muscles of the palm that control the motion of the little finger, while the thenar eminence is the group of muscles on the palm at the base of the thumb. Both the two eminences may contact the touchscreen when a user is typing. However, the touches caused by the posiform is usually heavy and intensive, which is easy to confused with intentional touches. Furtunately, these touches are frequently in the bottom left and the bottom right corners. Thus, the distances to the corners could be good features to reject these unintentional touches.}
+	\item{\textbf{EG2):} \emph{Continuous touches.} When a user continuously typed on the same key (e.g., the delete key), the follow-up touches might be lighter. 显著性分析发现，连续点击中的后续点击的平均力度为xx.xg，显著低于非后续有意点击的平均水平xx.xg（F,p）. These touches are lighter than other intentional touches, so they are likely to be recognized as unintentional touches. Adding information of recent touches could help to correct this fail case.}
+	\item{\textbf{EG3):} \emph{One-hand typing.} Some participants typed with one hand, while resting the other hand on the touchsreen. In this situation, the model might think that all the touches together was the "multiple fingers resting" behavior, and identified the case as an unintentional touch. To correct this fail case, we added information of nearby touches, because the typing finger is usually far away from the resting fingers.}
 \end{enumerate}
 
-【图：大鱼际和小鱼际，还有其它需要图解的错例。】
+\begin{figure}[!tbh]
+	\includegraphics[width=1.0\linewidth]{figures/fail_case_examples.png}
+	\centering
+	\caption{Fail cases的一些图例.}
+	\label{fig:fail_case_examples}
+\end{figure}
 
 %（1）V2版模型有些时候会把小鱼际的误触判定为有意点击。我们发现，用户的小鱼际误触主要集中在触摸屏的左下角和右下角。因此，我们给模型添加上了一系列"Distance-to-corners"的特征，这样一来，模型将会降低在小鱼际处识别出有意点击的概率。
 %（2）用户在连续点击同一个按键时（比较常见的是删除键），后续的点击可能会变得很轻，使得它的力度看上去更像是一个无意点击，V2版模型不能很好地处理这个问题。因此，我们给模型添加上了一系列"ralationship-to-recent-touches"的特征，这样一来，连续点击即使变得更轻，也能被正确地识别成有意点击。
@@ -124,6 +133,8 @@ We used previous work as baseline \cite{2013-TapBoard}, where every touches that
 	\caption{Fail cases of the model version 2. Noticed that the "Fail cases" is the number of fail cases of the model, but not a counting for the user behavior. xxx.}
 	\label{fig:fail_cases}
 \end{figure}
+
+【表格：我们的机器学习算法的fail cases有哪些，解决方法是什么】
 
 We have three conclusions in this experiments. First, participants were willing to rest their fingers on the touchscreen that can reject unintentional touches in imaginary. Hereby, we proposed a hypothesis to be verified, where users are willing to rest their fingers on a real TypeBoard. Second, the force signal is important for rejecting unintentional touches in the text entry task. Third, most unintentional touches (>99\%) can be identified by spatial-temporal features of the signals on a force-sensitive touchsreen keyboard.
 
