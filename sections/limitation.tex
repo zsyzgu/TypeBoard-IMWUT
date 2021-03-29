@@ -1,5 +1,9 @@
 \section{Discussion}
 
+\subsection{Why sample five frames in each touch?} There is a trade-off between the amount of sampling frames and the accuracy. The more data we sample in each touch, the more accuracy the prediction is. However, a long sampling window means a large delay, which affects the user experience. We needed to strike a balance. Five frames of sampling results in an acceptable prediction accuracy (xx.xx\%), meanwhile the delay of 100ms is not perceivable in the touching task [xx].
+
+【图：不同延迟的准确率比较】
+
 \subsection{Why not deep learning?}
 
 %在这份工作中，我们采用了经典的机器学习方法来解决问题，而没有使用近年来很火的深度学习。我们不采用机器学习有三个原因：首先，我们方法的准确率已经很高了，接近人类（实验者）的判断准确率，更复杂的算法很难突破此准确率；第二，触摸屏的防误触是触屏设备上很基础、很底层的需求，需要快速、低功耗的求解方式，而深度学习作为计算密集型的工具，不适用于解决此问题；第三，采用深度学习不一定能提高预测准确率，此问题中有不少因素不利于深度学习，如电容屏的图像信息缺少纹理、部分fail cases的样本量很少，深度学习很难在不加干预的情况下学习到关键信息。
