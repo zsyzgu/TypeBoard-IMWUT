@@ -1,53 +1,45 @@
 \section{Discussion}
 
-\subsection{Why sample five frames in each touch?} There is a trade-off between the amount of sampling frames and the accuracy. The more data we sample in each touch, the more accuracy the prediction is. However, a long sampling window means a large delay, which affects the user experience. We needed to strike a balance. Five frames of sampling results in an acceptable prediction accuracy (xx.xx\%), meanwhile the delay of 100ms is not perceivable in the touching task [xx].
-
-【图：不同延迟的准确率比较】
-
 \subsection{Why not deep learning?}
 
 %在这份工作中，我们采用了经典的机器学习方法来解决问题，而没有使用近年来很火的深度学习。我们不采用机器学习有三个原因：首先，我们方法的准确率已经很高了，接近人类（实验者）的判断准确率，更复杂的算法很难突破此准确率；第二，触摸屏的防误触是触屏设备上很基础、很底层的需求，需要快速、低功耗的求解方式，而深度学习作为计算密集型的工具，不适用于解决此问题；第三，采用深度学习不一定能提高预测准确率，此问题中有不少因素不利于深度学习，如电容屏的图像信息缺少纹理、部分fail cases的样本量很少，深度学习很难在不加干预的情况下学习到关键信息。
 
-In this paper, we used classical machine learning methods (SVM) to solve the problem. We did not used deep learning for two reasons. First, the accuracy of our model was high, nearing the ability of human. A more sophisticated method can hardly surpass our proposal. Second, the prevention of unintentional touch is a basic and underlying function on touchscreen devices, requiring fast and low-power solutions. Deep learning, as a computationally intensive tool, does not meet the requirement. For these reasons, we argue that classical machine learning methods are more practical for this problem.
+In this paper, we used classical machine learning methods (SVM) to solve the problem. We did not use deep learning for two reasons. First, the accuracy of our model was high, nearing the ability of humans. A more sophisticated method can hardly surpass our proposal. Second, the prevention of unintentional touch is a basic and underlying function on touchscreen devices, requiring fast and low-power solutions. Deep learning, as a computationally intensive tool, does not meet the requirement. For these reasons, we argue that classical machine learning methods are more practical for the problem.
 
-\subsection{How to improve the detection?}
+\subsubsection{The iterative method.}
 
-First, we can leverage the keyboard layout as a basis for unintentional touche detection, e.g., when a touch does not fall on any button, it has a greater probability of being an unintentional touch. Second, we can use the language model as priori knowledge. Bayesian decoder is widely used to predict users’ desired words from the vocabulary [QwertyRing - 16, 18, 24, 40]. The decoder can also calculate the probability distribution of the next touch. When a touch falls on the button of low probability, it is more likely to be an unintentional touch. In this paper, our proposal leveraged neither the keyboard layout not the language model, because we explored the general method to solve the unintentional touch problem.
+A lightspot of this paper is the iterative process to solve the problem, i.e., we developed a semi-finished TypeBoard, then conducted user experiment on it, and finally improved the technique by using the latest dataset. Because the relationship between a technique and the user behavior on it is a "chicken and egg" problem, most previous studies explored user behaviors through experiments on devices with no feedback (like our study one) \cite{2012-IdentifyUnint, 2014-PenMightier, 2018-PalmTouch} or substituted feedbacks \cite{2013-TapBoard, 2020-TabletopTouch}. We argue that the iterative method deserves more attention. In our work, the user behaviors we observed in study two (with feedback) are different from those in study one (without feedback). The model trained by the latest dataset also performed better. That is, the iterative process improved our technique and helped to gain a more practical model of user behavior.
+
+\subsection{Other ways to improve the detection?}
+
+First, we can leverage the keyboard layout as a basis for unintentional touch detection, e.g., when a touch does not fall on any button, it has a greater probability of being an unintentional touch. Second, we can use the language model as a priori knowledge. The Bayesian decoder is widely used to predict users’ desired words from the vocabulary \cite{2018-Wristext, 2016-Watchwriter, 2019-Rotoswype, 2014-Vulture}. The decoder can also calculate the probability distribution of the subsequent touch. When a touch falls on the low probability button, it is more likely to be an unintentional touch. Our proposal leveraged neither the keyboard layout nor the language model because we explored the general method to solve the unintentional touch problem.
 
 % 首先，我们可以将键盘的布局作为误触判断的依据。也就是说，当一次点击不落在任意按键之上时，它有更大的概率是一次误触。由于软键盘的布局和算法设计有多种可能性，我们这份工作作为通用的防误触研究，没有将键盘布局考虑进来。但可以肯定的是，在软键盘设计确定下来以后，根据布局方案来优化防误触能力是有可能的。
 
-\subsection{Language dependence of TypeBoard.}
+\subsection{Language dependence of the TypeBoard.}
 
-Though our studies were conducted in Chinese, we argue that TypeBoard can perform well in different languages. However, to achieve the best performance in other languages, we need to reproduce our study two in the target language, and use (1) the existing feature vector and (2) the new dataset to train the model.
+Our studies were conducted in Chinese. To achieve the best performance in other languages, we suggest a reproduction of our study two on the target language, and using (1) the existing feature vector and (2) the new dataset to retrain the model.
 
 \begin{enumerate}
-	\item{\emph{Why the existing feature vector is adequate?} The Chinese input method was comprehensive. We observed a variety of unintentional touch situations in the study, which help us to design the feature vector thoughtfully. There are a large number of keyboard layouts (e.g., English, German, France and Russian), on which users type straightforwardly to enter characters. The orthography used for Chinese and other East Asian languages (e.g., Japanese, and Korean) require special input methods. Users narrowed down the range of possibilities by entering the desired character's pronunciation, and then selected the desired ideogram.}
-	\item{\emph{Why we suggest a reproduction of study in the target language?} In study two, we found that the details of user behavior (e.g., the touch pressure and the frequency of a certain behavior) vary in different experimental settings, and these changes had a significant impact on the training results. We believe that this phenomenon exists when we reproduce the study in a different language. So adapting to the target language should slightly improve the performance of TypeBoard.}
+	\item{\emph{Why the existing feature vector is adequate?} The Chinese input method was comprehensive. We observed various unintentional touch cases in the study, which helps us design the feature vector thoughtfully. There are many keyboard layouts (e.g., English, German, France, and Russian) on which users type directly to enter characters. The orthography used for Chinese or other East Asian languages (e.g., Japanese and Korean) requires special input methods. Users narrowed down the range of possibilities by entering the desired character's pronunciation and then selected the desired ideogram. Generally speaking, user behaviors in Chinese text input tasks are more diverse.}
+	\item{\emph{Why we suggest a reproduction of study on the target language?} In study two, we found that the typing behavior in details (e.g., the frequency of each kind of unintentional touch) significantly impacted the model training results. We believe there is typing behavior difference in different languages, so adapting to the target language should improve the TypeBoard performance.}
 \end{enumerate}
 
-事实上，键盘布局发生变化的时候，也应该重新做实验二来保证最高准确率。
+\subsection{The TypeBoard plus vs. touchscreen overlays.}
 
-==========
+The TypeBoard plus enables touch typing on tablets by allowing users to rest their fingers on touchscreens. There are other solutions to support the finger resting on the touchscreen. TouchFire \cite{2020-TouchFire}, SLAP Widget \cite{2008-Slap}, and the Sensel Morph \cite{Website-Morph} offer an overlay on the touchscreen. Only keystrokes are transferred to the touch screen by a mechanical structure, and other touches are blocked. The TypeBoard plus has two advantages compared to the touchscreen overlay solution.
+First, we can add tactile landmarks on the TypeBoard through built-in devices such as deformable screens \cite{Website-Tactus} and changeable surface texture \cite{2011-Stimtac, 2010-TeslaTouch, 2011-Enhancing}, while the touchscreen overlay is an external object.
+Second, the tactile landmarks on the TypeBoard were only 0.05 mm thick. Users can perform text input, and cursor control in the same space \cite{2016-TapBoard2}, which reduces task-switching costs and improves efficiency. In contrast, the touchscreen overlay bumps are much thicker, preventing users from using the touchscreen as a trackpad.
 
-我们这种凸起的方法相比于物理夹层来说，有哪些优势？
+\subsection{Other ways to improve the user experience?}
 
-(1) 有可能做到built-in，使得它成为平板电脑的一部分。built-in的方法有可变形的键盘、静电和超声波。
-(2) 我们的凸起只有0.5mm，用户能感受到该纹理，同时也能把整个屏幕当成触摸板来使用。这样一来，打字和移动光标的操作就能够在同一个空间中进行[TapBoard2]降低了任务切换成本，提高使用效率。相比之下，物理夹层的厚度就大得多，整个屏幕会变成一个巧克力键盘，不能当触摸板来使用。
+First, in the experiment, we provided audio feedback for each keystroke. Previous work showed that the tactile feedback of a click could also improve the accuracy and speed of typing \cite{2015-Haptic}. In the future, we can use vibration to simulate physical buttons' tactile feedback, similar to the MacBook Trackpad.
+Second, the TypeBoard users cannot directly press keys with their fingers resting. We should enable this feature in the future.
 
-\section{Limitation and Future Work}
+%首先，在实验中， 我们仅使用了声音反馈来提供按键的确认感。实际上，触觉反馈也能够提升按键的确认感，并显著提升打字的准确率和速度\cite{2015-Haptic}。在未来工作中，我们应该可以利用震动来模拟按键的物理反馈，类似MacBook Trackpad的物理反馈。第二，在TypeBoard上，用户不能在手指休息的状态下直接按下按键，这一点和物理键盘是不一样的。在未来，我们应该通过压力阈值的方法，允许用户在手指休息的情况下，直接键入字母。
 
-这份工作存在着一些limitation，可以指导我们的未来工作。
+%This work has a number of limitations, which suggest new directions for future work:
+%(1)实验二中，每个用户使用TypeBoard的时长只有20分钟，也就是说，我们采集了用户在初次使用防误触键盘时的用户行为，但没有采集到长期影响下的用户行为。在未来，一个长期的实验是有必要和有价值的。
+%(2)本实验中仅使用了声音反馈，加入打字时的触觉反馈，在用户敲下了有意点击的时候，触摸屏可以用震动来模拟物理按键中下压的感觉（类似MacBook Trackpad）。触觉反馈和声音反馈都能提升打字准确率和速度\cite{2015-Haptic}。
+%(3)不能直接在touched状态下直接press，使得用户在快速打字的时候可能不会将手指休息在触摸屏上。
 
-实验二中，每个用户使用TypeBoard的时长只有20分钟，也就是说，我们采集了用户在初次使用防误触键盘时的用户行为，但没有采集到长期影响下的用户行为。在未来，一个长期的实验是有必要和有价值的。
-
-在真实使用情况下，由于键盘的布局会在触屏的下方，所以小鱼际的误触可能会显著更少。好在我们的算法能处理的问题是包含小鱼际，小鱼际误触少的情况当然也是能够解决的。
-
-有可能的follow up works：
-
-键盘、触摸板一体for个人笔记本电脑？
-
-利用手掌位置来处理触屏输入法中的漂移问题。
-
-加入打字时的触觉反馈，在用户敲下了有意点击的时候，触摸屏可以用震动来模拟物理按键中下压的感觉（类似MacBook Trackpad）。触觉反馈和声音反馈都能提升打字准确率和速度\cite{2015-Haptic}。
-
-用户表示，需要触摸在touchscreen上，加大力度按下去的那种方式，能提高速度和体验。

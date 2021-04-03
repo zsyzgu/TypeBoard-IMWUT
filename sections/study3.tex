@@ -1,76 +1,91 @@
 \section{Study 3: Evaluation on TypeBoard}
 
-The motivations of study three were two-fold. First, we compared the performance and user experience of the TypeBoard and the baseline. The baseline was the regular software keyboard without unintentional touch rejection. Second, as we introduced in related work, tactile landmarks on keyboards improve users' typing speed by enabling touch type, so we investigated the feasibility of TypeBoard plus tactile landmarks in this study. In summary, we evaluated users' typing performance on three settings: (1) regular software keyboard, (2) TypeBoard, and (3) TypeBoard with tactile landmarks.
+The motivations of study three were two-fold. First, we compared the performance and user experience of the TypeBoard and the ordinary touchscreen keyboard. Second, as we introduced in related work, tactile landmarks on keyboards improve users' typing speed by enabling touch typing, so we investigated the feasibility of TypeBoard plus tactile landmarks in this study. In summary, we evaluated users' typing performance on three settings: (1) ordinary software keyboard, (2) TypeBoard, and (3) TypeBoard plus, which was the TypeBoard plus tactile landmarks.
 
 %实验三的目的有两点：第一，评测TypeBoard的性能，包括在不同的文本输入任务下的输入效率和主观用户体验，baseline是没有防误触算法的触屏键盘。第二，相关工作中我们提到，在防误触触屏键盘上，有望通过加上纹理反馈帮助用户盲打，提高输入效率，本实验探索了这一假设是否成立。
 
 \subsection{Participants}
 
-We recruited 15 participants from the campus (aged from xx to xx, M = xx, SD = xx, xx females). All the participants were right handed. They have used software keyboards on smartphones for not less than xx years. xx of the 15 participants were familiar with tablet keyboards. Participants did not take part in the last two experiments.
-
-%我们从本地的校园中邀请了15名用户参与实验，他们的年龄从xx岁到xx岁不等，平均数是xx，标准差是xx，其中有xx名女性。所有的用户都是右撇子，所有用户有超过xx年的手机文本输入经历，xx名用户常用平板电脑进行文本输入。这些用户没有参与过前两个实验。
+We recruited 15 participants from the campus (aged from 19 to 26, M = 20.87, SD = 2.42, seven females). All the participants were right-handed and did not take part in the previous studies. They have used software keyboards on smartphones for not less than two years (M = 6.67, SD = 2.06). Eleven participants have ever used software keyboards on tablets.
 
 \subsection{Design and Procedure}
 
-The study followed a within-subject design to compare users' typing speed in three keyboard configurations. As figure xx shows, the participant sat on an office chair. He was able to adjust the chair to a comfortable position. The participant typed on the pressure-sensitive touchpad to enter words, and received visual feedback from the tablet. There were three settings of the pressure-sensitive touchpad in the experiment as follows:
+The study followed a within-subject design to compare users' typing speed in three keyboard configurations. The participant sat on an office chair. He could adjust the chair to a comfortable position. The participant typed on the pressure-sensitive touchpad to input words and received visual feedback from the tablet. As figure \ref{fig:study3_illu} shows, there were three settings of the pressure-sensitive touchpad in the experiment as follows:
 
 \begin{enumerate}
-	\item{\textbf{Config. 1):} \emph{Regular Software Keyboard.} All contacts on the touchscreen are recognized as keystrokes. Users need to hang their wrists in the air to avoid unintentional touches.}
-	\item{\textbf{Config. 2):} \emph{TypeBoard.} TypeBoard is a software keyboard with unintentional touches rejection. The system only recognized intentional touches as keystrokes. Users can rest their hand on the keyboard.}
-	\item{\textbf{Config. 3):} \emph{TypeBoard plus.} "TypeBoard plus" refers to the TypeBoard plus tactile landmarks. To afford tactile landmarks on TypeBoard, we attached 0.05mm thick stickers on the touchpad to simulate physical keys. There were small bumps on the F and J keys, which is the same as the physical keyboard. Users could align their fingers without having to look at the keyboard.}
+	\item{\textbf{Config. 1):} \emph{Ordinary Keyboard.} On the ordinary software keyboard, all contacts on the touchscreen are recognized as keystrokes. Users need to hang their wrists in the air to avoid unintentional touches.}
+	\item{\textbf{Config. 2):} \emph{TypeBoard.} TypeBoard is a software keyboard with unintentional touch rejection. The system only recognized intentional touches as keystrokes. Users can rest their hands on the keyboard.}
+	\item{\textbf{Config. 3):} \emph{TypeBoard plus.} TypeBoard plus refers to the TypeBoard plus tactile landmarks. To provide tactile landmarks on TypeBoard, we attached 0.05 mm thick stickers on the touchpad to simulate physical keys. There were small bumps on the F and J keys, which is the same as the physical keyboard. Users could align their fingers without visual attention.}
 \end{enumerate}
 
-【图：实验三要对比的三种实验设置，大图是用户实验的整体环境，大图中包含三个小图显示三种键盘配置】
+\begin{figure}[!tbh]
+	\includegraphics[width=1.0\linewidth]{figures/study3_illu.png}
+	\centering
+	\caption{图：实验三要对比的三种实验设置，大图是用户实验的整体环境，大图中包含三个小图显示三种键盘配置}
+	\label{fig:study3_illu}
+\end{figure}
 
-%我们采取了within-subject的实验方法，对比了三种不同的实验设置（如图xx所示）：
-%\begin{enumerate}
-%	\item{\textbf{Config. 1):} \emph{Regular Soft Keyboard.} 没有防误触功能的软键盘。}
-%	\item{\textbf{Config. 2):} \emph{TypeBoard.} TypeBoard，有防误触功能的软键盘，这也是实验二的设置。}
-%	\item{\textbf{Config. 3):} \emph{TypeBoard + Tactile Landmarks.} 在TypeBoard的基础上，在每个按键的位置上贴上了0.05毫米厚的贴纸，其中F键和J键上各再加上了一条0.05毫秒厚的横杠，用于模拟物理键盘上的触觉Lankmakrs。0.05毫米的厚度可以让用户明显地摸到每个键的边缘，同时符合可变形触摸屏的工艺要求[xx]。}
-%\end{enumerate}
-
-There were five sessions for each of the three keyboard configurations. In each session, participants transcribed a Chinese paragraph on a typing speed measurement website [xx]. We randomly selected the task paragraphs in the website. Participants were asked to input as fast and accurately as possible. The transcription task is widely used in text entry researches [xx,xx,xx] to evaluate the ceiling typing speed.  We counterbalanced the order of keyboard configuration using a balanced latin square.
-
-% 用户依次在三种config下做实验，每种情况下分为五个session，每个session都需要誊写十个句子。 Participants were asked to transcribed the task phrases as fast as possible。The transcription task is widely used in text entry researches [xx,xx,xx] to evaluate the ceiling typing speed. 由于我们的用户是中文母语者，我们的誊写任务也是誊写中文，我们使用打字测速网站[xx]来做任务。用户所输入的15段文字是从测速网站中随机抽取的。 We counterbalanced both the order of keyboard settings and the order of 测试文字 using a balanced latin square.
-
-Participants had five minutes to warm up before they used each keyboard. They transcribed two paragraphs to get familiar with the keyboard. The task phrases in the training step would not appear in the formal experiment. Participants rested for five minutes between sessions to avoid fatigue. In average, participant spent xx minutes to complete the experiment.
-
-%用户使用每一种实验设置之前，都有5分钟的热身时间，通过输入例句来热身。用户在切换实验设置的时候休息5分钟时间，以避免疲劳。用户在每个实验设置下需要完成与实验二相同的五个文本输入任务，每种实验设置下的实验时长大约为xx分钟。实验的总耗时为xx分钟。
+There were five sessions for each of the three keyboard configurations. In each session, participants transcribed a Chinese paragraph in a Microsoft Word document. There were roughly xx Chinese characters in a task paragraph. We randomly selected the task paragraphs in a typing speed measurement website \cite{Website-Typing}. Participants were asked to input as fast and accurately as possible. The transcription task is widely used in text entry researches \cite{2003-Metrics, 2003-Phrase, 2017-Word} to evaluate the ceiling typing speed.  We counterbalanced the order of keyboard configuration using a balanced latin square.
+Participants had five minutes to warm up before they used each keyboard. They transcribed a paragraph to get familiar with the keyboard. The task phrases in the training step would not appear in the formal experiment. Participants rested for five minutes between sessions to avoid fatigue. On average, participants spent 90 minutes completing the experiment.
 
 \subsection{Reslut}
 
-A Repeated Measures (RM) ANOVA was conducted for text entry speed, Uncorrected Error Rate (UER) and Corrected Error Rate (CER). The within factor was the keyboard configuration. As UER and CER violated the normalcy, we used the Aligned Rank Transform [xx] for correction. If any independent variable had significant effects (p < 0.05), we used Bonferroni-corrected post-hoc tests for pairwise comparisons.
+A Repeated Measures (RM) ANOVA was conducted for text entry speed, Uncorrected Error Rate (UER), and Corrected Error Rate (CER). The within factors were the keyboard and the session. As UER and CER violated the normalcy, we used the Aligned Rank Transform \cite{2011-Aligned} for correction. If any independent variable had significant effects (p < 0.05), we used Bonferroni-corrected post hoc tests for pairwise comparisons.
 
 \subsubsection{Speed}
 
-We measured text entry speed in Chinese characters per minutes (CPM). Participants used Pinyin [xx-wiki], a phonetic spelling system in Roman characters to input Chinese characters. To enter a Chinese character, users type the Pinyin of the desired character (2 - 6 letters) and then select the target from a candidate list. Users can also type the Pinyin of a Chinese word, which consists of two to four characters, and then select the word at one time. In short, the process of entering a Chinese character is similar to inputting an English word with word prediction/correction. We measured typing speed in CPM with this formula:
+We measured text entry speed in Chinese characters per minute (CPM). Participants used Pinyin \cite{Website-Pinyin}, a phonetic spelling system in Roman characters to input Chinese characters. To input a Chinese character, users type the Pinyin of the desired character (2 - 6 letters) and then select the target from a candidate list. Participants can also type the Pinyin of a Chinese word, consisting of two to four Chinese characters, and then select the whole word. In short, the process of inputting a Chinese character/word is similar to inputting an English word with word prediction/correction. We measured typing speed in CPM with this formula:
 
-【中文文本输入速度公式】
+\begin{equation}
+	CPM = \frac{|S|}{T} \times 60
+\end{equation}
 
-where |S| is the length of the transcribed paragraph in characters (including punctuation), and T is the complete time, i.e., the elapsed time in seconds from the first to the last touch
-in the task. All time consumption, including the time of selecting candidates, was taken into account.
+where |S| is the length of the transcribed paragraph in characters (including punctuation), and T is the completion time, i.e., the elapsed time in seconds from the first intentional touch to the last one. All the time consumption, including the time of candidate selection, was taken into account.
 
 %我们使用的是中文输入法，我们所统计的量是中文字/分钟，公式是，当用户输入数字或字母时，其速度不纳入统计范围。我们测试了五种不同的输入任务，值得注意的是，只有transcription任务中的输入速度比较符合用户的ceiling speed，而在其它任务中，完成任务的时间包含了用户思考的时间和键鼠切换的时间。
 
-Figure xx shows the speeds over sessions. The performance on regular keyboard starts with a speed of xx.xx CPM (SD = x.xx) and ends with a speed of xx.xx WPM (SD = xx.xx). xxx. xxx. 1. 显著性 2. 组间显著性 3. 对显著性的讨论。
+\begin{figure}[!tbh]
+	\includegraphics[width=0.6\linewidth]{figures/speed.png}
+	\centering
+	\caption{Text entry speed of the three keyboards over sessions. Error bars indicate 95\% confidence interval.}
+	\label{fig:speed}
+\end{figure}
 
-【图：实验三中各种实验设置下用户输入速率随着session增长而增加的图】
+Figure \ref{fig:speed} shows the users' typing speeds over sessions. There is no significant effect of session on speed ($F_{4,56}=1.76,p=.15,\eta_p^2=0.11$). The result indicates that the learning costs of the three keyboards were low. Participants reached the ceiling performance after a five-minute training. Keyboard has a significant effect on speed ($F_{2,28}=26.76,p<.001,\eta_p^2=0.66$). Pair-wise comparisons show significant differences between all the keyboard pairs: ordinary keyboard vs. TypeBoard ($p<.005$), ordinary keyboard vs. TypeBoard plus ($p<.001$), and TypeBoard vs. TypeBoard plus ($p<.005$). The participants' average typing speed on the ordinary keyboard was 43.71 CPM (SD = 6.52). The typing speed on the TypeBoard was 48.87 CPM (SD = 10.14), outperforming the ordinary keyboard by 11.78\%. The typing speed on the TypeBoard plus was 52.97 CPM (SD = 9.85), outperforming the ordinary keyboard by 21.19\%. Results show that the TypeBoard improves the efficiency of the touchscreen keyboard.
 
 \subsubsection{Error rate}
 
-Two metrics were used to measure text entry accuracy: (1) Uncorrected Error Rate (UER) - text entry errors which remain in the transcribed string. UER is the number of uncorrected erroneous Chinese characters divided by the number of correct and erroneous characters. (2) Corrected Error Rate (CER) - text entry errors which are fixed (e.g., backspaced) during entry. CER is calculated by the number of corrected erroneous Chinese characters divided by the number of correct and erroneous characters. The corrections of Pinyin during inputting a word were not taken into account of CER. As UER and VER violated the normalcy, we used the Aligned Rank Transform for nonparametric factorial analysis [xx].
+We used two metrics to measure text entry accuracy: (1) Uncorrected Error Rate (UER) - text entry errors that remain in the transcribed string. UER is the number of uncorrected erroneous Chinese characters divided by the number of correct and erroneous characters. (2) Corrected Error Rate (CER) - text entry errors that are fixed (e.g., backspaced) during entry. CER is the number of corrected erroneous Chinese characters divided by the number of correct and erroneous characters. The corrections of Pinyin while inputting a word were not taken into account of CER. As UER and UER violated the normalcy, we used the Aligned Rank Transform for nonparametric factorial analysis \cite{2011-Aligned}.
 
-Figure xx shows the UER and the CER over sessions.
+\begin{figure}[!tbh]
+	\includegraphics[width=1.0\linewidth]{figures/error_rate.png}
+	\centering
+	\caption{Uncorrected error rates and Corrected error rates of the three keyboards over sessions.}
+	\label{fig:error_rate}
+\end{figure}
 
-significance.
+Figure \ref{fig:error_rate} shows the CER and the UER over sessions. There is no significant effect of session on CER ($F_{4,56}=1.01,p=.39$). Keyboard has a significant effect on CER ($F_{2,28}=9.49,p<.005$). Pair-wise comparisons showed significant differences between the following keyboard pairs: ordinary keyboard vs. TypeBoard ($p<.01$), and ordinary keyboard vs. TypeBoard plus ($p<.005$). The average CERs of the ordinary keyboard, TypeBoard, and TypeBoard plus were 6.66\% (SD = 4.42\%), 4.58\% (SD = 3.58\%), and 4.21\% (SD = 2.58\%).
+There is no significant effect of session ($F_{4,56}=0.41,p=.71$) or keyboard ($F_{2,28}=0.001,p=.998$) on UER. The average UERs of the ordinary keyboard, TypeBoard, and TypeBoard plus were 1.29\% (SD = 1.67\%), 1.28\% (SD = 1.38\%), and 1.28\% (SD = 1.16\%).
+Results show that the TypeBoard reduces the probability of making a typo compared with the ordinary keyboard. This is the main reason the TypeBoard improves the typing speed of the touchscreen keyboard. The TypeBoard plus does not reduce the probability of making a typo compared with the TypeBoard. Thus, there are other reasons for faster typing on the TypeBoard plus.
 
-discussion (explanation of significance).
+%在中文输入法中，CER可能会比其它语言的输入法更多，这是因为用户可能会利用词语的联想功能来打一个汉字，然后把后面那个字删掉。
 
-【图：各实验设置下UER和CER随着session增长而增加的图】
+%Figure 14 shows the UER and the CER over five days. There is no significant effect of model or day on UER. The average UER was 1.17% (SD = 1.02%) for the general model and 1.50% (SD = 1.40%) for the personal model. There is no significant effect of the model on CER. The days have a significant effect on CER (F4,56 = 6.84,p < .005). Pair-wise comparisons showed significant differences between the following day pairs: 1-3(p<.005), 1-4(p<.05), 1-5(p<.005), 2-3(p<.05) and 2-5(p<.05). On day 5, the average CER was 3.22% (SD = 2.92%) for the general model and 2.92% (SD = 1.65%) for the personal model. That is, participants made corrections once every 30 words with both of the models.
+
+\subsubsection{Time components}
+
+Time components.
+
+\begin{figure}[!tbh]
+	\includegraphics[width=0.6\linewidth]{figures/time_components.png}
+	\centering
+	\caption{Time components.}
+	\label{fig:time_components}
+\end{figure}
 
 \subsubsection{Unintentional touches}
 
-For the three configurations regular keyboard, TypeBoard and TypeBoard plus landmarks, the proportions of unintentional touches were xx.xx\%, xx.xx\% and xx.xx\% respectively.
+For the three configurations ordinary keyboard, TypeBoard and TypeBoard plus, the proportions of unintentional touches were xx.xx\%, xx.xx\% and xx.xx\% respectively.
 
 English.
 
@@ -84,9 +99,8 @@ English.
 
 \subsubsection{Touch position}
 
-Figure xx illustrates the multiple finger resting behavior through point clouds. The distribution seems optional on the ordinary TypeBoard, and seems regular on the TypeBoard plus tactile landmarks. xx.x\% of the resting touchpoints laid on the second row of keys on the TypeBoard with landmarks, which has an significant difference (F, p) from the ordinary TypeBoard (xx.x\%). This indicates that users leveraged the tactile landmarks to align their fingers.
-
-【图：用户在multiple finger resting时的手指点云，TypeBoard with/without landmarks】
+%Figure xx illustrates the multiple finger resting behavior through point clouds. The distribution seems optional on the ordinary TypeBoard, and seems regular on the TypeBoard plus tactile landmarks. xx.x\% of the resting touchpoints laid on the second row of keys on the TypeBoard with landmarks, which has an significant difference (F, p) from the ordinary TypeBoard (xx.x\%). This indicates that users leveraged the tactile landmarks to align their fingers.
+%【图：用户在multiple finger resting时的手指点云，TypeBoard with/without landmarks】
 
 Figure xx shows the distribution of intentional touchpoints over keyboard configurations. We used xxx to cluster the point cloud of each key. xxx shows that the point cloud obeyed the 2D Gaussian distribution (F, p). The average standard deviation of the distributions were xx.x mm (SD=), xx.x mm (SD=) and xx.x mm (SD=). RM-ANOVA shows that the keyboard has a significant effect on users' touching accuracy (F, p). Users typed more accurately on the TypeBoard plus landmarks compared with the regular keyboard (p) and the TypeBoard (p). The analysis of touch position shows that users aligned their fingers on the TypeBoard with tactile landmarks, which improved their typing accuracy.
 
@@ -107,8 +121,12 @@ Compared with regular touchscreen keyboards, the TypeBoard has the advantages of
 （1）避免疲劳。TypeBoard用户在誊写任务的每100次打字行为中，系统就会阻止xx.x次多指休息行为和xx.x次小鱼际点击。实验二表面，TypeBoard在其它需要更多键鼠切换或者思考的文本输入任务下，所阻止的多指休息次数会更多（xx.x 每100次点击）。结果表明，用户在TypeBoard上会主动地利用可以将手指和手腕休息在touchscreen上的特性。而且在用户的主观反馈当中，用户也表示TypeBoard显著地降低了他们的疲劳程度。
 （2）主观用户体验。TypeBoard在主观输入速度、主观输入准确率等方面都显著优于普通键盘。这说明TypeBoard可以提高用户体验。
 
+我们推断，TypeBoard的优势主要在降低错误率，和避免疲劳。
+
 \subsubsection{TypeBoard vs. TypeBoard plus}
 
 English
 
 TypeBoard plus 是我们设想中的一种软键盘形态，即利用可变形触屏[xx]或者添加layout[xx]的方法来达到提供触觉landmarks的目的。我们发现，TypeBoard plus不仅能够降低疲劳、提高用户体验，还能够显著地提高软键盘上的文本输入速度，将输入速度提高xx.x\%。输入效率提高的主要原因是用户可以在TypeBoard plus中align fingers，从而实现盲打。
+
+我们推断，TypeBoard的优势主要在盲打。

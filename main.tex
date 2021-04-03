@@ -87,7 +87,7 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{TypeBoard: Identifying Unintentional Touch on Pressure-Sensitive Touchscreen Keyboard}
+\title{TypeBoard: Identifying Unintentional Touch on Pressure-Sensitive Touchscreen Keyboards}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -120,7 +120,19 @@
 %% article.
 \begin{abstract}
 
-用户在触屏键盘上打字时，触摸屏幕即触发点击事件。因此，触屏用户不能像在物理键盘上一样通过触摸来align fingers positions[xx]，也不能将手指休息在键盘上，影响了触屏打字的效率和舒适度。在这篇论文中，我们提出了TypeBoard，一款带压力屏键盘上的防误触算法，我们也研究了用户使用TypeBoard时的打字行为。用户的打字行为和防误触能力之间是相互影响的，比如，在防误触的触屏键盘上，用户会更倾向于将手指休息在触碰上，造成更多的、更多样的非有意触摸点；而更多的、更多样的非有意触碰点会对防误触提出更高的要求。为此，我们通过迭代的数据采集和机器学习方法来设计了TypeBoard防误触算法。在一个使用TypeBoard写日记的评测实验中，用户的非有意触点个数占触点总数的xx.x\%，我们的算法能在点击事件发生100 ms的时间内以xx.x\%的准确率判断出其输入意图，而相关工作中基于压力和时间阈值的方法[xx]的识别准确率只有xx.x\%，且必须在release以后做出判断。这份工作说明，第一，压敏触屏键盘有能力准确地、低延迟地防止用户休息、轻触等行为造成的误触。第二，用户在有效防误触的键盘上打字时，其用户行为会发生改变，比如手指休息的行为会显著增加。第三，防误触键盘和传统触碰键盘相比，能够防止用户疲劳，提高用户体验，且显著降低了输入任务的完成时间。
+%用户在触屏键盘上打字时，触摸屏幕即触发点击事件。因此，触屏用户不能像在物理键盘上一样通过触摸来align fingers positions[xx]，也不能将手指休息在键盘上，影响了触屏打字的效率和舒适度。在这篇论文中，我们提出了TypeBoard，一款带压力屏键盘上的防误触算法，我们也研究了用户使用TypeBoard时的打字行为。用户的打字行为和防误触能力之间是相互影响的，比如，在防误触的触屏键盘上，用户会更倾向于将手指休息在触碰上，造成更多的、更多样的非有意触摸点；而更多的、更多样的非有意触碰点会对防误触提出更高的要求。为此，我们通过迭代的数据采集和机器学习方法来设计了TypeBoard防误触算法。在一个使用TypeBoard写日记的评测实验中，用户的非有意触点个数占触点总数的xx.x\%，我们的算法能在点击事件发生100 ms的时间内以xx.x\%的准确率判断出其输入意图，而相关工作中基于压力和时间阈值的方法[xx]的识别准确率只有xx.x\%，且必须在release以后做出判断。这份工作说明，第一，压敏触屏键盘有能力准确地、低延迟地防止用户休息、轻触等行为造成的误触。第二，用户在有效防误触的键盘上打字时，其用户行为会发生改变，比如手指休息的行为会显著增加。第三，防误触键盘和传统触碰键盘相比，能够防止用户疲劳，提高用户体验，且显著降低了输入任务的完成时间。
+
+Text input is essential in tablet computer interaction. However, tablet software keyboards face the problem of misrecognizing unintentional touch, which affects efficiency and usability \cite{2013-TapBoard, 2018-UbiK}. In this paper, we proposed TypeBoard, a pressure-sensitive touchscreen keyboard that prevents unintentional touches. The TypeBoard allows users to rest their fingers on the touchscreen, which changes the user behavior. On average, users produce 40.83 unintentional touches every 100 keystrokes. The TypeBoard prevents unintentional touch with an accuracy of 98.88\%. A typing study showed that the TypeBoard relieved fatigue ($p< 0.005$), reduced corrected error rate ($p<0.01$), and improved the tablet keyboard' typing speed by 11.78\% ($p<0.005$). 
+Under the premise that users could rest their fingers on the touchscreen, we added tactile landmarks on the TypeBoard, allowing users to find the keys through touch rather than sight. The tactile landmarks further improve the typing speed, outperforming the ordinary tablet keyboard by 21.19\% ($p<0.001$).
+The results show that pressure-sensitive touchscreen keyboards can prevent unintentional touch, which improves efficiency and usability from many aspects, including relieving fatigue, reducing error rates, and mediately allowing touch typing on the tablet.
+
+%Furthermore, we added stickers on the TypeBoard to provide tactile landmarks, allowing users to find the keys through touch rather than sight. The TypeBoard with tactile landmarks improves the ordinary tablet keyboard' typing speed by 21.19\% ($p<0.001$). In real use, we can add tactile landmarks on the TypeBoard through deformable screens \cite{Website-Tactus}, and changeable surface texture \cite{2011-Stimtac, 2010-TeslaTouch, 2011-Enhancing}.
+
+% 43.7096
+% 48.8660
+% 52.9708
+
+%触屏软键盘在性能和体验这两方面都无法与物理键盘相提并论。用户可以将手指休息在物理键盘上，但不能休息在软键盘上，否则会引发误触。这种触摸键位而不按下的状态是物理键盘可用性的重要原因。首先，这可以降低疲劳；第二，用户可以通过触摸（而不是视觉）来寻找键位，大大提高了输入效率。为了缩小软键盘和物理键盘之间的差距，我们提出了TypeBoard，一种防误触的软键盘。TypeBoard允许用户将手指休息在触屏上，在此许诺下用户的输入行为会发生变化，每100次有意点击中就会出现xx.x次误触。在这个误触很多的数据集下，我们的模型的预测准去率达到了xx.x\%。实验证明，TypeBoard显著降低了用户打字时的疲劳程度和心理负担。更进一步地，我们在TypeBoard上用贴纸来提供tactile landmarks，从而允许用户通过触觉来寻找键位。实验证明，TypeBoard with landmarks降低了疲劳和心理负担，且将普通软键盘的输入效率显著提高了0.xx倍（F,p）。
 
 \end{abstract}
 
