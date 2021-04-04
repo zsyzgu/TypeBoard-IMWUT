@@ -2,15 +2,13 @@
 
 The motivations of study three were two-fold. First, we compared the performance and user experience of the TypeBoard and the ordinary touchscreen keyboard. Second, as we introduced in related work, tactile landmarks on keyboards improve users' typing speed by enabling touch typing, so we investigated the feasibility of TypeBoard plus tactile landmarks in this study. In summary, we evaluated users' typing performance on three settings: (1) ordinary software keyboard, (2) TypeBoard, and (3) TypeBoard plus, which was the TypeBoard plus tactile landmarks.
 
-%实验三的目的有两点：第一，评测TypeBoard的性能，包括在不同的文本输入任务下的输入效率和主观用户体验，baseline是没有防误触算法的触屏键盘。第二，相关工作中我们提到，在防误触触屏键盘上，有望通过加上纹理反馈帮助用户盲打，提高输入效率，本实验探索了这一假设是否成立。
-
 \subsection{Participants}
 
 We recruited 15 participants from the campus (aged from 19 to 26, M = 20.87, SD = 2.42, seven females). All the participants were right-handed and did not take part in the previous studies. They have used software keyboards on smartphones for not less than two years (M = 6.67, SD = 2.06). Eleven participants have ever used software keyboards on tablets.
 
 \subsection{Design and Procedure}
 
-The study followed a within-subject design to compare users' typing speed in three keyboard configurations. The participant sat on an office chair. He could adjust the chair to a comfortable position. The participant typed on the pressure-sensitive touchpad to input words and received visual feedback from the tablet. As figure \ref{fig:study3_illu} shows, there were three settings of the pressure-sensitive touchpad in the experiment as follows:
+The study followed a within-subject design to compare users' typing speed in three keyboard configurations. The participant sat on an office chair. He could adjust the chair to a comfortable position. The participant typed on the pressure-sensitive touchpad to input words and received visual feedback from the tablet. As figure \ref{fig:study3_illu} shows, there were three keyboard settings in the experiment as follows:
 
 \begin{enumerate}
 	\item{\textbf{Config. 1):} \emph{Ordinary Keyboard.} On the ordinary software keyboard, all contacts on the touchscreen are recognized as keystrokes. Users need to hang their wrists in the air to avoid unintentional touches.}
@@ -21,7 +19,7 @@ The study followed a within-subject design to compare users' typing speed in thr
 \begin{figure}[!tbh]
 	\includegraphics[width=1.0\linewidth]{figures/study3_illu.png}
 	\centering
-	\caption{图：实验三要对比的三种实验设置，大图是用户实验的整体环境，大图中包含三个小图显示三种键盘配置}
+	\caption{The three keyboard settings in study three.}
 	\label{fig:study3_illu}
 \end{figure}
 
@@ -66,7 +64,7 @@ We used two metrics to measure text entry accuracy: (1) Uncorrected Error Rate (
 
 Figure \ref{fig:error_rate} shows the CER and the UER over sessions. There is no significant effect of session on CER ($F_{4,56}=1.01,p=.39$). Keyboard has a significant effect on CER ($F_{2,28}=9.49,p<.005$). Pair-wise comparisons showed significant differences between the following keyboard pairs: ordinary keyboard vs. TypeBoard ($p<.01$), and ordinary keyboard vs. TypeBoard plus ($p<.005$). The average CERs of the ordinary keyboard, TypeBoard, and TypeBoard plus were 6.66\% (SD = 4.42\%), 4.58\% (SD = 3.58\%), and 4.21\% (SD = 2.58\%).
 There is no significant effect of session ($F_{4,56}=0.41,p=.71$) or keyboard ($F_{2,28}=0.001,p=.998$) on UER. The average UERs of the ordinary keyboard, TypeBoard, and TypeBoard plus were 1.29\% (SD = 1.67\%), 1.28\% (SD = 1.38\%), and 1.28\% (SD = 1.16\%).
-Results show that the TypeBoard reduces the probability of making a typo compared with the ordinary keyboard. This is the main reason the TypeBoard improves the typing speed of the touchscreen keyboard. The TypeBoard plus does not reduce the probability of making a typo compared with the TypeBoard. Thus, there are other reasons for faster typing on the TypeBoard plus.
+Results show that the TypeBoard reduces the probability of making typos compared with the ordinary keyboard. This is the main reason the TypeBoard improves the typing speed of the touchscreen keyboard. The TypeBoard plus does not reduce the probability of making a typo compared with the TypeBoard. Thus, there are other reasons for faster typing on the TypeBoard plus.
 
 %在中文输入法中，CER可能会比其它语言的输入法更多，这是因为用户可能会利用词语的联想功能来打一个汉字，然后把后面那个字删掉。
 
@@ -74,7 +72,9 @@ Results show that the TypeBoard reduces the probability of making a typo compare
 
 \subsubsection{Time components}
 
-Time components.
+To gain deeper insight into the performance comparison among keyboards, we broke down the text entry time into four components: typing time, selecting time, deleting time, and pause time. Typing time was the time spent on typing Pinyin. Selecting time was the time spent on selecting a candidate Chinese character/word. Deleting time was the time spent on deleting characters. Pause time span from inputting the last character/word to starting the next character/word. Figure \ref{fig:time_components} shows the typing time, selecting time, deleting time, and pausing time per Chinese character over the three keyboards. RM ANOVAs showed that keyboard has significant effects on selecting time ($F_{2,28}=7.85,p<.005$), deleting time ($F_{2,28}=20.89,p<.001$), and pause time ($F_{2,28}=12.76,p<.001$).
+Pair-wise comparisons showed that both the TypeBoard (p<.001) and the TypeBoard plus (p<.001) reduce the ordinary keyboard's deleting time. The results showed that unintentional touch prevention reduced typos.
+The TypeBoard plus significantly reduced the pause time compared to the ordinary keyboard (p<.001) and the TypeBoard (p<.005). The results indicated that participants performed touch typing more frequently on the TypeBoard plus, saving the time of finding the next transcribing word.
 
 \begin{figure}[!tbh]
 	\includegraphics[width=0.6\linewidth]{figures/time_components.png}
@@ -83,50 +83,37 @@ Time components.
 	\label{fig:time_components}
 \end{figure}
 
-\subsubsection{Unintentional touches}
-
-For the three configurations ordinary keyboard, TypeBoard and TypeBoard plus, the proportions of unintentional touches were xx.xx\%, xx.xx\% and xx.xx\% respectively.
-
-English.
-
-为了方便计算，我们在上述统计中假设算法100\%正确预测了点击的有意性。
-
-统计发现，显著性影响。
-
-讨论造成显著性的原因。
-
-在实验三中，TypeBoard上的误触与实验二相比显著降低，我们认为，这是任务不同造成的。在誊写这种快速输入的任务下，用户在普通触屏键盘和TypeBoard上都没有必要将手指休息在键盘上。但在TypeBoard+tactile设置下，用户在誊写任务下仍然引发了大量的“误触”，这暗示，用户可能并不只是将手指休息在触屏上，而是尝试利用触屏上的纹理来对齐他们的手指，从而达到部分的盲打。
+%\subsubsection{Unintentional touches}
+%For the three configurations ordinary keyboard, TypeBoard and TypeBoard plus, the proportions of unintentional touches were xx.xx\%, xx.xx\% and xx.xx\% respectively.
 
 \subsubsection{Touch position}
 
-%Figure xx illustrates the multiple finger resting behavior through point clouds. The distribution seems optional on the ordinary TypeBoard, and seems regular on the TypeBoard plus tactile landmarks. xx.x\% of the resting touchpoints laid on the second row of keys on the TypeBoard with landmarks, which has an significant difference (F, p) from the ordinary TypeBoard (xx.x\%). This indicates that users leveraged the tactile landmarks to align their fingers.
-%【图：用户在multiple finger resting时的手指点云，TypeBoard with/without landmarks】
+Figure \ref{fig:touch_position} shows the distribution of intentional touches on the TypeBoard and the TypeBoard plus . For convenience, we assumed that the point clouds obeyed 2D Gaussian distributions. While the key width is xx mm and key height is xx mm, the average X/Y offsets were xx/xx mm on the TypeBoard and xx/xx mm on the TypeBoard plus. This result shows that users tend to touch shift towards the xx of the keyboard. The average X/Y standard deviations of the distributions were xx/xx mm and xx/xx mm on the two keyboards. An paired sample t-test shows that keyboard has a significant effect on the average product of X and Y standard deviations (F, p), which indicated that users typed more accurately on the TypeBoard plus (p<). Users touched the tactile landmarks on the TypeBoard plus to aligned their fingers, which improved the typing accuracy.
 
-Figure xx shows the distribution of intentional touchpoints over keyboard configurations. We used xxx to cluster the point cloud of each key. xxx shows that the point cloud obeyed the 2D Gaussian distribution (F, p). The average standard deviation of the distributions were xx.x mm (SD=), xx.x mm (SD=) and xx.x mm (SD=). RM-ANOVA shows that the keyboard has a significant effect on users' touching accuracy (F, p). Users typed more accurately on the TypeBoard plus landmarks compared with the regular keyboard (p) and the TypeBoard (p). The analysis of touch position shows that users aligned their fingers on the TypeBoard with tactile landmarks, which improved their typing accuracy.
-
-【图：各实验设置下用户有意点击点云】
+\begin{figure}[!tbh]
+	\includegraphics[width=0.8\linewidth]{figures/touch_position.png}
+	\centering
+	\caption{The distributions of intentional touches on the TypeBoard (above) and the TypeBoard plus (below). The ellipses show 1 standard deviation of the distribution.}
+	\label{fig:touch_position}
+\end{figure}
 
 \subsubsection{Subjective Rating and Feedback}
 
-English.
+Participants rated the subjective speed, accuracy, fatigue, and cognitive load on a 7-point Likert scale (1 - the worst; 7 - the best) after using each keyboard. Figure \ref{fig:subjective_feedback} shows the results. Wilcoxon Signed-Rank tests show that the TypeBoard significantly improves the ordinary keyboard's subjective speed ($Z=-2.27,p<.05$), accuracy ($Z=-3.24,p<.005$), fatigue ($Z=-2.84,p<.005$), and cognitive load ($Z=-1.99,p<.05$). The TypeBoard plus improves the ordinary keyboard's subjective speed ($Z=-3.17,p<.005$), accuracy ($Z=-3.52,p<.001$), fatigue ($Z=-3.34,p<.001$), and cognitive load ($Z=-2.28,p<.05$). The TypeBoard plus is better than the TypeBoard on subjective speed ($Z=-2.40,p<.05$) and fatigue ($Z=-2.85,p<.005$). Results show that both the TypeBoard and the TypeBoard plus improve the ordinary keyboard's user experience.
 
-物理负担（疲劳程度），心理负担，主观输入速度，主观输入准确率（误触准确率，而非选词准确率）。
+\begin{figure}[!tbh]
+	\includegraphics[width=0.6\linewidth]{figures/subjective_feedback.png}
+	\centering
+	\caption{Subjective ratings (higher is better).}
+	\label{fig:subjective_feedback}
+\end{figure}
 
-\subsection{Discussion}
+\subsection{Summary}
 
-\subsubsection{TypeBoard vs. Regular Keyboard}
+\subsubsection{Ordinary Keyboard vs. TypeBoard}
 
-Compared with regular touchscreen keyboards, the TypeBoard has the advantages of avoiding fatigue and improving subjective user experience.
-
-（1）避免疲劳。TypeBoard用户在誊写任务的每100次打字行为中，系统就会阻止xx.x次多指休息行为和xx.x次小鱼际点击。实验二表面，TypeBoard在其它需要更多键鼠切换或者思考的文本输入任务下，所阻止的多指休息次数会更多（xx.x 每100次点击）。结果表明，用户在TypeBoard上会主动地利用可以将手指和手腕休息在touchscreen上的特性。而且在用户的主观反馈当中，用户也表示TypeBoard显著地降低了他们的疲劳程度。
-（2）主观用户体验。TypeBoard在主观输入速度、主观输入准确率等方面都显著优于普通键盘。这说明TypeBoard可以提高用户体验。
-
-我们推断，TypeBoard的优势主要在降低错误率，和避免疲劳。
+The TypeBoard improves the ordinary tablet keyboard's typing speed by 11.78\%. The TypeBoard has the advantages of avoiding fatigue, relieving cognitive load, and reducing typos.
 
 \subsubsection{TypeBoard vs. TypeBoard plus}
 
-English
-
-TypeBoard plus 是我们设想中的一种软键盘形态，即利用可变形触屏[xx]或者添加layout[xx]的方法来达到提供触觉landmarks的目的。我们发现，TypeBoard plus不仅能够降低疲劳、提高用户体验，还能够显著地提高软键盘上的文本输入速度，将输入速度提高xx.x\%。输入效率提高的主要原因是用户可以在TypeBoard plus中align fingers，从而实现盲打。
-
-我们推断，TypeBoard的优势主要在盲打。
+The TypeBoard plus further improve the TypeBoard's typing speed by 8.51\%, outperforming the ordinary tablet keyboard by 21.19\%. Compared to the TypeBoard, the TypeBoard plus has the advantages of improving typing accuracy and reducing pause time.
